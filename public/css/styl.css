@@ -1,0 +1,271 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Allerta+Stencil&display=swap'); /*navbar*/
+@import url("https://fonts.googleapis.com/css2?family=Poppins:weight@100;200;300;400;500;600;700;800&display=swap");/*search*/
+@import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"); /*RECIPES*/
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700');
+@import url('https://fonts.googleapis.com/css?family=Libre+Baskerville:400,700');
+
+/*
+.navbar {
+    border-bottom: 1px solid grey;
+}
+
+.navbar-brand img {
+    width: 50px;
+}
+*/
+
+/*
+NAVBAR
+ */
+
+body {
+    font-family: 'Libre Baskerville', serif;
+}
+
+.navbar-nav>li>a{
+    text-transform: uppercase;
+    font-size: 12px;
+    margin-right:20px;
+    color: #000;
+}
+
+.navbar-toggler {
+    padding: .20rem .50rem;
+    font-size: 1.25rem;
+    line-height: 1;
+    background-color: transparent;
+    border: 1px solid white;
+}
+
+.navbar-brand{
+    color:#000;
+    font-family: 'Allerta Stencil', sans-serif;
+    margin-bottom: 4px;
+    font-size: 30px !important;
+}
+
+.nav-link{
+    color: #000 !important;
+}
+
+.all-show{
+
+    z-index: 10;
+}
+
+
+/*
+SEARCH
+ */
+.search{
+    position: relative;
+    box-shadow: 0 0 40px rgba(51, 51, 51, .1);
+}
+
+.search input{
+    height: 60px;
+    text-indent: 25px;
+    border: 2px solid black;
+}
+
+
+.search input:focus{
+    box-shadow: none;
+    border: 2px solid black;
+}
+
+.search .fa-search{
+    position: absolute;
+    top: 20px;
+    left: 16px;
+}
+
+.search button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    height: 50px;
+    width: 110px;
+    background: #ffdead;
+}
+
+/*
+RECIPES
+ */
+
+*:hover{
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+section{
+    float:left;
+    width:100%;
+    background: #fff;
+    padding:30px 0;
+}
+/*h1{float:left; width:100%; color:#232323; margin-bottom:30px; font-size: 20px;}*/
+h1 h5 span{font-family: 'Libre Baskerville', serif; display:block; font-size:80px; text-transform:none; margin-bottom:20px; margin-top:30px; font-weight:700}
+h1 a{color:#131313; font-weight:bold;}
+
+
+.nadpiskarta {
+    font-size: 25px ;
+    text-align: center;
+    margin-top: 0px;
+}
+
+.profile-card-5{
+    margin-top:20px;
+}
+.profile-card-5 .btn{
+    border-radius:2px;
+    text-transform:uppercase;
+    font-size:12px;
+    padding:7px 30px;
+}
+.profile-card-5 .card-img-block {
+    width: 91%;
+    margin: 0 auto;
+    position: relative;
+    top: -20px;
+
+}
+.profile-card-5 .card-img-block img:hover{
+    border-radius:5px;
+    box-shadow:0 0 10px rgba(0,0,0,0.63);
+}
+.profile-card-5 h5{
+    color:#4E5E30;
+    font-weight:600;
+}
+.profile-card-5 p{
+    font-size:16px;
+    font-weight:300;
+}
+.profile-card-5 .btn-primary{
+    background-color:#4E5E30;
+    border-color:#4E5E30;
+}
+
+
+/*my rules*/
+
+.navbar-bg {
+    color: #ffdead;
+    font-family: 'Allerta Stencil', sans-serif;
+}
+
+h5 {
+    font-size: 18px;
+}
+
+
+.a-login {
+    color: white;
+
+}
+
+.a-login:hover {
+    color:#ffdead;
+}
+
+.a-content:hover {
+    color: #4E5E30;
+}
+
+.navbar-bg{
+    background-color: #ffdead;
+    color: #000;
+}
+
+.search-bar {
+    padding-bottom: 1vh;
+    padding-top: 1vh;
+}
+
+.img-logo {
+    width: 2vw;
+    height: auto;
+}
+
+.img-footer {
+    width: 3vw;
+    height: auto;
+}
+
+.button-bot {
+    background-color: white;
+}
+
+.my-button {
+    padding: 10px;
+    margin: 10px;
+}
+
+.moje-zarovnanie {
+    text-align: center;
+}
+
+.my-color {
+    background-color: #ffc266;
+    color: black;
+    border: black solid 3px;
+}
+
+.my-button-color {
+    background-color: #ffdead;
+    color: black;
+}
+
+.color-create {
+    background-color: #ffad33;
+    color: black;
+}
+
+
+
+.flex-rule {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.title-recipe {
+    background: pink;
+    /* vnutro */
+    padding: 1vh 2vw 1vw;
+    /*vonkajsok*/
+    margin: 0vh 5vw 3vh;
+}
+
+.flex-rule-child {
+    padding-left: 2vh;
+    padding-right: 2vh;
+    padding-bottom: 1vh;
+    margin-bottom: 3vh;
+
+    margin-right:1vw;
+    margin-left:2vw;
+}
+
+
+.flex-rule-child1 {
+    background-color: #E2F0CB;
+    width: 30vw;
+}
+
+.flex-rule-child2 {
+    background-color: #B5EAD7;
+    width: 55vw;
+}
+
+.odsadenie {
+    margin-top: 2vh;
+    margin-bottom: 3vh !important;
+}
+
+.form-field {
+    width: 50vw !important;
+    alignment: center;
+}
