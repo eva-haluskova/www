@@ -229,6 +229,8 @@ h5 {
     display: flex;
     justify-content: center;
     align-items: flex-start;
+
+
 }
 
 .title-recipe {
@@ -244,20 +246,18 @@ h5 {
     padding-right: 2vh;
     padding-bottom: 1vh;
     margin-bottom: 3vh;
-
     margin-right:1vw;
     margin-left:2vw;
 }
 
-
 .flex-rule-child1 {
     background-color: #E2F0CB;
-    width: 30vw;
+    width: 20vw;
 }
 
 .flex-rule-child2 {
     background-color: #B5EAD7;
-    width: 55vw;
+    width: 35vw;
 }
 
 .odsadenie {
@@ -266,6 +266,21 @@ h5 {
 }
 
 .form-field {
-    width: 50vw !important;
+    width: 40vw !important;
     alignment: center;
+    margin-bottom: 2vh;
 }
+
+.select-form-height {
+    height: 35px !important;
+}
+
+.picture-image {
+    height: auto;
+    width: 25vw;
+}
+
+.background-color-form {
+    background-color: lightpink;
+}
+

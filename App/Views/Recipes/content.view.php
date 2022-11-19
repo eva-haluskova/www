@@ -30,5 +30,9 @@
             </p>
         </div>
 
+        <div>
+            <img class="flex-rule-child picture-image" src="public/images/<?php echo $data->getImage() ?>" alt="Image of cake">
+        </div>
+
     </div>
 </div>

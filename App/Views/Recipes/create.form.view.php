@@ -1,5 +1,5 @@
 
-<div class="container form-field">
+<div class="container form-field background-color-form">
 <form  method="post"  action="?c=recipes&a=store">
    <div class="moje-zarovnanie">
 
@@ -37,16 +37,14 @@
         <label for="comment" class="col-form-label">Postup:</label>
         <div class="input-group">
   <!--          <input type="text"  class="form-control" rows="5" placeholder="Enter process" name="process" value="<?php echo $data->getProcess() ?>"> -->
-            <textarea class="form-control" rows="5" id="comment" name="process">
-                <?php echo $data->getProcess() ?>
-            </textarea>
+            <textarea class="form-control" rows="5" placeholder="Enter process" id="comment" name="process"><?php echo $data->getProcess() ?></textarea>
         </div>
     </div>
 
     <div>
         <label class="col-form-label">Druh:</label>
         <div class="input-group">
-            <select class="form-select form-control" name="type" value="<?php echo $data->getType() ?>">
+            <select class="form-select form-control select-form-height" name="type" value="<?php echo $data->getType() ?>">
                 <option>Zákusok</option>
                 <option>Torta</option>
                 <option>Múčnik</option>
@@ -57,11 +55,11 @@
     </div>
 
        <div>
-           <label for="avatar">Choose a profile picture:</label>
-           <input type="file" id="avatar" accept="image/png, image/jpeg" name="image" value="<?php echo $data->getImage() ?>">>
+           <label class="col-form-label">Vyber obrázok z počítača:</label>
+           <input type="file" id="avatar" accept="image/png, image/jpeg" name="image" value="<?php echo $data->getImage() ?>">
        </div>
 
-        <button type="submit" class="btn my-button my-color odsadenie">Odoslať</button>
+        <button type="submit" class="btn my-button color-create odsadenie">Odoslať</button>
     </div>
 
 </form>
