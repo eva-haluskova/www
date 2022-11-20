@@ -35,8 +35,8 @@
         <p class="p-contact">Ilustracny obrazok adresy :)
         </p>
     </div>
-<!--
+
     <img src="public/images/adresa.png" class = "img-pro img-style" alt="Adresa">
--->
+
 </div>
 </div>

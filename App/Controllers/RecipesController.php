@@ -39,16 +39,37 @@ class RecipesController extends AControllerBase
 
         $id = $this->request()->getValue('id');
         $recipe = ( $id ? Recipe::getOne($id) : new Recipe()); //kontrolujem ci pridavam recept alebo upravujem stary....
-        $recipe->setTitle($this->request()->getValue('title'));
-        $recipe->setProcess($this->request()->getValue('process'));
-        $recipe->setIngredient($this->request()->getValue('ingredient'));
-        $recipe->setType($this->request()->getValue('type'));
-        if ($recipe->getImage() == null) {
-            $recipe->setImage("universal.jpg");
+        $title = $this->request()->getValue('title');
+        $ingredient = $this->request()->getValue('ingredient');
+        $process = $this->request()->getValue('process');
+        $type = $this->request()->getValue('type');
+
+        if (is_string($title) && is_string($ingredient) && is_string($process)
+            &&
+            strlen($title) >= 5 && strlen($title) <= 40 &&
+            strlen($process) >= 10 && strlen($ingredient) >= 10
+            &&
+            ($type == "Zákusok" || $type == "Torta" || $type == "Múčnik"
+                || $type == "Kysnutý koláč" || $type == "Iné"))
+
+        {
+            $recipe->setTitle($this->request()->getValue('title'));
+            $recipe->setProcess($this->request()->getValue('process'));
+            $recipe->setIngredient($this->request()->getValue('ingredient'));
+            $recipe->setType($this->request()->getValue('type'));
+        /*    if ($recipe->getImage() == null) { */
+                $recipe->setImage("universal.jpg");
+       /*     } else {
+                $recipe->setImage($this->request()->getValue('image'));
+            } */
+
+            $recipe->save();
         } else {
-            $recipe->setImage($this->request()->getValue('image'));
+            $myfile = fopen("testfile.txt", "a");
+            $txt = "Nespravny vstup\n";
+            fwrite($myfile,$txt);
+            fclose($myfile);
         }
-        $recipe->save();
         return $this->redirect("?c=recipes");
     }
 
@@ -57,4 +78,5 @@ class RecipesController extends AControllerBase
         $recipeToDisplay = Recipe::getOne($id);
         return $this->html($recipeToDisplay, viewName: 'content');
     }
+
 }

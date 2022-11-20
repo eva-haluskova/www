@@ -306,10 +306,6 @@ h5 {
     width: 100%;
 }
 
-.margin {
-    margin-bottom: 45px;
-    margin-top: 0px;
-}
 
 /* contant view */
 
@@ -376,9 +372,18 @@ h5 {
     font-size: 20px;
     line-height: 1.8;
     color: #f5f6f7;
+    margin-right: 3vw;
+    margin-left: 3vw;
 }
 .p-contact {font-size: 16px;}
 .margin-contact {
     margin-bottom: 45px;
     margin-top: 0px;
 }
+/*
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+*/
