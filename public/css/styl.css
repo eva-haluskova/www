@@ -19,6 +19,10 @@
 NAVBAR
  */
 
+.g {
+    width: 100%;
+}
+
 body {
     font-family: 'Libre Baskerville', serif;
 }
@@ -28,6 +32,12 @@ body {
     font-size: 12px;
     margin-right:20px;
     color: #000;
+}
+
+.navbar-navbar {
+    position: static;
+    top: 0px;
+
 }
 
 .navbar-toggler {
@@ -281,6 +291,94 @@ h5 {
 }
 
 .background-color-form {
-    background-color: lightpink;
+    background-color:  #ffccd4;
 }
 
+.footer-fixed {
+    position: fixed;
+    bottom: 0px;
+}
+
+.navbar-fixed {
+    position: fixed;
+    top: 0px;
+    z-index: 1000;
+    width: 100%;
+}
+
+.margin {
+    margin-bottom: 45px;
+    margin-top: 0px;
+}
+
+/* contant view */
+
+.bg-1 {
+    background-color: #B5EAD7;
+    color: #000000;
+
+}
+.bg-2 {
+    background-color: #ffccd4;
+    color: #000000;
+}
+.bg-3 {
+    background-color: #E2F0CB;
+    color: #000000;
+}
+.bg-4 {
+    background-color: #2f2f2f;
+    color: #fff;
+}
+
+.container-fluid-contact {
+    padding-top: 70px;
+    padding-bottom: 70px;
+    margin: 3vw;
+}
+
+.container-2 {
+    padding-top: 70px;
+    padding-bottom: 30px;
+}
+
+.img-style {
+    border: 2px solid black;
+}
+
+.content {
+    float: left;
+    width: 50vw;
+}
+
+.img-pro {
+    width: 40%;
+    height: auto;
+}
+
+@media only screen and (max-width: 700px) {
+
+    .content {
+        float: none;
+        width: 100%;
+    }
+
+    .img-pro {
+        width: 90%;
+        height: auto;
+    }
+}
+
+@import url('https://fonts.googleapis.com/css?family=Libre+Baskerville:400,700');
+
+.contact {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 20px;
+    line-height: 1.8;
+    color: #f5f6f7;
+}
+.p-contact {font-size: 16px;}
+.margin-contact {
+    margin-bottom: 45px;
+    margin-top: 0px;
+}

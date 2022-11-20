@@ -8,6 +8,8 @@
     <meta charset="UTF-8">
     <title><?= \App\Config\Configuration::APP_NAME ?></title>
 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <!--
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
@@ -24,7 +26,7 @@
     <script src="public/js/script.js"></script>
 
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+
 
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 
@@ -79,7 +81,10 @@
 
 
 <!--navbar-->
-<nav class="navbar navbar-expand-lg navbar-light navbar-bg">
+<div class="g">
+
+
+<nav class="navbar navbar-expand-lg navbar-navbar navbar-light navbar-bg">
 
     <a class="navbar-brand" href="?c=home">VYPEČENÁ RECEPTÁREŇ</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -87,7 +92,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
-            <li class="nav-item dropdown">
+ <!--           <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href=?c=recipes" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Recepty
                 </a>
@@ -98,12 +103,17 @@
                     <a class="dropdown-item" href="#">Kysnuté koláče</a>
                     <a class="dropdown-item" href="#">...</a>
                 </div>
+            </li> -->
+            <li class="nav-item">
+                <a class="nav-link" href="?c=recipes">Recepty</a>
             </li>
+
             <li class="nav-item">
                 <a class="nav-link" href="?c=home&a=contact">O nás</a>
             </li>
         </ul>
     </div>
+    <!--
         <ul class="navbar-nav ms-auto">
             <li class="nav-item">
                 <?php if ($auth->isLogged()) { ?>
@@ -113,9 +123,11 @@
                 <?php } ?>
             </li>
         </ul>
+    -->
 
 
 </nav>
+</div>
 
 <!--content-->
 <div class="container-fluid mt-3">
@@ -124,13 +136,15 @@
     </div>
 </div>
 <!--footer-->
-<div >
+
+
+<div>
     <footer class="text-center text-lg-start container-fluid" style="background-color: navajowhite;">
         <div class="container d-flex justify-content-center py-5">
 
             <button type="button" class="btn btn-lg btn-floating mx-2" style="background-color: white;">
                 <!--           <a href="#"><img src="css/images/facebook.png" alt="Facebook logo" width=25em height=auto></a> -->
-                <img src="public/images/facebook.png" class = "img-footer" alt="Facebook logo">
+               <img src="public/images/facebook.png" class = "img-footer" alt="Facebook logo">
             </button>
 
             <button type="button" class="btn btn-lg btn-floating button-bot" style="background-color: white;">

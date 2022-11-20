@@ -23,21 +23,21 @@
     <div class="mb-3" >
         <label class="col-form-label">Názov receptu:</label>
         <div class="input-group">
-            <input type="text" class="form-control" placeholder="Enter title" name="title" value="<?php echo $data->getTitle() ?>">
+            <input type="text" class="form-control" placeholder="volž názov receptu" name="title" value="<?php echo $data->getTitle() ?>">
         </div>
     </div>
     <div class="mb-3">
 
         <label class="col-form-label">Ingrediencie:</label>
         <div class="input-group">
-            <input type="text" class="form-control" placeholder="Enter ingredient" name="ingredient" value="<?php echo $data->getIngredient() ?>">
+            <input type="text" class="form-control" placeholder="vlož ingrediencie oddelené čiarkov" name="ingredient" value="<?php echo $data->getIngredient() ?>">
         </div>
     </div>
     <div class="mb-3">
         <label for="comment" class="col-form-label">Postup:</label>
         <div class="input-group">
   <!--          <input type="text"  class="form-control" rows="5" placeholder="Enter process" name="process" value="<?php echo $data->getProcess() ?>"> -->
-            <textarea class="form-control" rows="5" placeholder="Enter process" id="comment" name="process"><?php echo $data->getProcess() ?></textarea>
+            <textarea class="form-control" rows="5" placeholder="vlož postup" id="comment" name="process"><?php echo $data->getProcess() ?></textarea>
         </div>
     </div>
 
@@ -56,7 +56,7 @@
 
        <div>
            <label class="col-form-label">Vyber obrázok z počítača:</label>
-           <input type="file" id="avatar" accept="image/png, image/jpeg" name="image" value="<?php echo $data->getImage() ?>">
+           <input type="file" id="avatar"  accept="image/png, image/jpeg" name="image" value="<?php echo $data->getImage() ?>">
        </div>
 
         <button type="submit" class="btn my-button color-create odsadenie">Odoslať</button>
