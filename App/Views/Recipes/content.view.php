@@ -1,5 +1,5 @@
 <?php /** @var \App\Models\Recipe $data */ ?>
-
+<div class="content-margin-bottom">
 <div class="wrapper wrapper-me">
      <div class = "title-recipe">
          <h1 class = "moje-zarovnanie">
@@ -35,4 +35,5 @@
         </div>
 
     </div>
+</div>
 </div>

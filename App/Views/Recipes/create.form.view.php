@@ -1,4 +1,4 @@
-
+<div class="content-margin-bottom-create">
 <div class="container form-field background-color-form">
 <form  method="post"  action="?c=recipes&a=store" >
    <div class="moje-zarovnanie">
@@ -64,5 +64,4 @@
 
 </form>
 </div>
-
-
+</div>

@@ -49,6 +49,8 @@
 </head>
 
 <body>
+<div id="page-container">
+    <div id="content-wrap">
 
 
 <!--
@@ -81,7 +83,7 @@
 
 
 <!--navbar-->
-<div class="g">
+
 
 
 <nav class="navbar navbar-expand-lg navbar-navbar navbar-light navbar-bg">
@@ -127,7 +129,7 @@
 
 
 </nav>
-</div>
+
 
 <!--content-->
 <div class="container-fluid mt-3">
@@ -136,10 +138,10 @@
     </div>
 </div>
 <!--footer-->
+        </div>
 
 
-<div>
-    <footer class="text-center text-lg-start container-fluid" style="background-color: navajowhite;">
+    <footer id="footer" class="text-center text-lg-start container-fluid" style="background-color: navajowhite;">
         <div class="container d-flex justify-content-center py-5">
 
             <button type="button" class="btn btn-lg btn-floating mx-2" style="background-color: white;">
@@ -154,8 +156,8 @@
             </button>
         </div>
     </footer>
+
+
 </div>
-
-
 </body>
 </html>

@@ -373,11 +373,20 @@ h5 {
     color: #f5f6f7;
     margin-right: 3vw;
     margin-left: 3vw;
+    margin-bottom: 20vh;
 }
 .p-contact {font-size: 16px;}
 .margin-contact {
     margin-bottom: 45px;
     margin-top: 0px;
+}
+
+.content-margin-bottom {
+    margin-bottom: 15vh;
+}
+
+.content-margin-bottom-create {
+    margin-bottom: 20vh;
 }
 /*
 footer {
@@ -462,15 +471,19 @@ footer {
     }
 }
 
+/*footer*/
+#page-container {
+    position: relative;
+    min-height: 100vh;
+}
 
+#content-wrap {
+    padding-bottom: 4rem;    /* Footer height */
+}
 
-
-
-
-@media only screen and (max-width: 992px) {
-    .form-field {
-        width: 90vw !important;
-        alignment: center;
-        margin-bottom: 2vh;
-    }
+#footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+ /*   height: 2.5rem;       */     /* Footer height */
 }

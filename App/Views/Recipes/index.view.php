@@ -3,7 +3,7 @@ use App\Models\Recipe;
 /** @var Recipe[] $data */
 ?>
 
-
+<div class="content-margin-bottom">
 <div class="container-fluid">
     <section>
         <div class="container">
@@ -37,4 +37,5 @@ use App\Models\Recipe;
             <a href="?c=recipes&a=create" class="btn color-create ">Pridať nový recept</a>
         </div>
     </div>
+</div>
 </div>
