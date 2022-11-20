@@ -34,10 +34,10 @@ body {
     color: #000;
 }
 
+
 .navbar-navbar {
     position: static;
     top: 0px;
-
 }
 
 .navbar-toggler {
@@ -52,7 +52,6 @@ body {
     color:#000;
     font-family: 'Allerta Stencil', sans-serif;
     margin-bottom: 4px;
-    font-size: 30px !important;
 }
 
 .nav-link{
@@ -132,7 +131,7 @@ h1 a{color:#131313; font-weight:bold;}
     border-radius:2px;
     text-transform:uppercase;
     font-size:12px;
-    padding:7px 30px;
+    padding:7px 15px;
 }
 .profile-card-5 .card-img-block {
     width: 91%;
@@ -276,7 +275,7 @@ h5 {
 }
 
 .form-field {
-    width: 40vw !important;
+    width: 45vw !important;
     alignment: center;
     margin-bottom: 2vh;
 }
@@ -387,3 +386,91 @@ footer {
     width: 100%;
 }
 */
+
+
+/* formular */
+@media only screen and (max-width: 1000px) {
+    .form-field {
+        width: 70vw !important;
+        alignment: center;
+        margin-bottom: 2vh;
+    }
+}
+
+
+@media only screen and (max-width: 800px) {
+    .form-field {
+        width: 90vw !important;
+        alignment: center;
+        margin-bottom: 2vh;
+    }
+}
+
+/* recept */
+@media only screen and (max-width: 800px) {
+
+    .flex-rule {
+        display: block;
+        alignment: center;
+
+        text-align: center;
+
+    }
+
+    .title-recipe {
+        background: pink;
+        padding: 1vh 2vw 1vw;
+        margin: 0vh 2vw 3vh;
+    }
+
+    .flex-rule-child {
+        padding-left: 2vh;
+        padding-right: 2vh;
+        padding-bottom: 1vh;
+        margin-bottom: 3vh;
+        margin-right: 1vw;
+        margin-left: 1vw;
+        align-content: center;
+    }
+
+    .flex-rule-child1 {
+        background-color: #E2F0CB;
+        width: 90vw;
+
+    }
+
+    ul {
+        text-align:  left;
+    }
+
+    .flex-rule-child2 {
+        background-color: #B5EAD7;
+        width: 90vw;
+    }
+
+    .picture-image {
+        width: 90vw;
+        height: auto;
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    .form-field {
+        width: 90vw !important;
+        alignment: center;
+        margin-bottom: 2vh;
+    }
+}
+
+
+
+
+
+
+@media only screen and (max-width: 992px) {
+    .form-field {
+        width: 90vw !important;
+        alignment: center;
+        margin-bottom: 2vh;
+    }
+}
