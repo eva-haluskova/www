@@ -150,7 +150,7 @@
             </button>
 
             <button type="button" class="btn btn-lg btn-floating button-bot" style="background-color: white;">
-                <!--            <a href="#"><img src="css/images/instagram.png" alt="Instagram logo" width=25em height=auto></a> -->
+          <!--      <a href="?c=home"><img src="css/images/instagram.png" width=25em height=auto></a> -->
                 <img src="public/images/instagram.png" class = "img-footer" alt="Instagram logo">
 
             </button>
