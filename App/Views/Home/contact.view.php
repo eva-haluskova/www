@@ -36,7 +36,11 @@
         </p>
     </div>
 
-    <img src="public/images/adresa.png" class = "img-pro img-style" alt="Adresa">
+    <div class="row mt-3">
+        <div class="col">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2606.399948834811!2d18.72465854997495!3d49.2119417!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47145ebeadcc1d83%3A0xf4538582a5888252!2zxaBrdWx0w6l0eWhvIDI4NTgvNTgsIDAxMCAwMSDFvWlsaW5h!5e0!3m2!1sen!2ssk!4v1673555995186!5m2!1sen!2ssk" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </div>
 
 </div>
 </div>

@@ -121,7 +121,8 @@ class Inflect
         'man' => 'men',
         'tooth' => 'teeth',
         'person' => 'people',
-        'valve' => 'valves'
+        'valve' => 'valves',
+        'category' => 'categories'
     );
 
     static $uncountable = array(

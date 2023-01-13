@@ -2,6 +2,7 @@
 
 namespace App\Auth;
 
+use App\Core\DB\Connection;
 use App\Core\IAuthenticator;
 
 /**
@@ -30,15 +31,39 @@ class DummyAuthenticator implements IAuthenticator
      * @return bool
      * @throws \Exception
      */
+
     function login($login, $password): bool
     {
-        if ($login == self::LOGIN && password_verify($password, self::PASSWORD_HASH)) {
-            $_SESSION['user'] = self::USERNAME;
-            return true;
-        } else {
+
+        $sql = "SELECT login, password, id FROM users WHERE login = ?";
+
+        $query = Connection::connect()->prepare($sql);
+        $query->execute([$login]);
+
+        $fetchedData = $query->fetch();
+
+        if(!$fetchedData) {
             return false;
         }
+
+
+        if ($fetchedData['login'] == $login && password_verify($password, $fetchedData['password'])) {
+            $_SESSION['user'] = $fetchedData['login'];
+            $_SESSION['id'] = $fetchedData['id'];
+            return true;
+        }
+
+        return false;
+        /*
+        if ($login == self::LOGIN && password_verify($password, self::PASSWORD_HASH)) {
+               $_SESSION['user'] = self::USERNAME;
+                return true;
+            } else {
+                return false;
+            }
+        */
     }
+
 
     /**
      * Logout the user
@@ -85,6 +110,7 @@ class DummyAuthenticator implements IAuthenticator
      */
     function getLoggedUserId(): mixed
     {
-        return $_SESSION['user'];
+       // return $_SESSION['user'];
+        return $_SESSION['id'];
     }
 }

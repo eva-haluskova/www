@@ -10,8 +10,9 @@ class Recipe extends Model
     protected $title;
     protected $process;
     protected $ingredient;
-    protected $type;
     protected $image;
+    protected $author;
+    protected $category;
 
     /**
      * @return mixed
@@ -80,22 +81,6 @@ class Recipe extends Model
     /**
      * @return mixed
      */
-    public function getType()
-    {
-        return $this->type;
-    }
-
-    /**
-     * @param mixed $type
-     */
-    public function setType($type): void
-    {
-        $this->type = $type;
-    }
-
-    /**
-     * @return mixed
-     */
     public function getImage()
     {
         return $this->image;
@@ -109,6 +94,38 @@ class Recipe extends Model
         $this->image = $image;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getAuthor()
+    {
+        return $this->author;
+    }
 
+    /**
+     * @param mixed $autor
+     */
+    public function setAuthor($author): void
+    {
+        $this->author = $author;
+    }
+
+
+
+    /**
+     * @return mixed
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * @param mixed $category
+     */
+    public function setCategory($category): void
+    {
+        $this->category = $category;
+    }
 
 }

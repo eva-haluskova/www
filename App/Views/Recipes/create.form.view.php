@@ -3,14 +3,17 @@
 <form  method="post" name="myForm" onsubmit="return validateForm()" action="?c=recipes&a=store" >
    <div class="moje-zarovnanie">
 
-    <?php /** @var \App\Models\Recipe $data */
-    if ($data->getId()) { ?>
+    <?php /** @var Array $data */
+    use App\Models\Recipe;
+    use App\Models\Catogory;
+
+    if ($data['recept']->getId()) { ?>
         <div>
             <h1 class = "moje-zarovnanie">
                 Uprav recept
             </h1>
         </div>
-        <input type="hidden" name="id" value="<?php echo $data->getId() ?>">
+        <input type="hidden" name="id" value="<?php echo $data['recept']->getId() ?>">
     <?php } else { ?>
         <div>
             <h1 class = "moje-zarovnanie">
@@ -23,42 +26,40 @@
     <div class="mb-3" >
         <label class="col-form-label">Názov receptu:</label>
         <div class="input-group">
-            <input type="text" class="form-control" id = "title" placeholder="volž názov receptu" name="title" value="<?php echo $data->getTitle() ?>" >
+            <input type="text" class="form-control" id = "title" placeholder="vlož názov receptu" name="title" value="<?php echo $data['recept']->getTitle() ?>" >
         </div>
     </div>
     <div class="mb-3">
 
         <label class="col-form-label">Ingrediencie:</label>
         <div class="input-group">
-            <input type="text" class="form-control" id = "ingredient" placeholder="vlož ingrediencie oddelené čiarkov" name="ingredient" value="<?php echo $data->getIngredient() ?>" >
+            <input type="text" class="form-control" id = "ingredient" placeholder="vlož ingrediencie oddelené čiarkov" name="ingredient" value="<?php echo $data['recept']->getIngredient() ?>" >
         </div>
     </div>
     <div class="mb-3">
         <label for="comment" class="col-form-label">Postup:</label>
         <div class="input-group">
-  <!--          <input type="text"  class="form-control" rows="5" placeholder="Enter process" name="process" value="<?php echo $data->getProcess() ?>"> -->
-            <textarea class="form-control" rows="5" placeholder="vlož postup" id="comment" name="process" ><?php echo $data->getProcess() ?></textarea>
+  <!--          <input type="text"  class="form-control" rows="5" placeholder="Enter process" name="process" value="<?php echo $data['recept']->getProcess() ?>"> -->
+            <textarea class="form-control" rows="5" placeholder="vlož postup" id="comment" name="process" ><?php echo $data['recept']->getProcess() ?></textarea>
         </div>
     </div>
 
     <div>
-        <label class="col-form-label">Druh:</label>
+        <label class="col-form-label">Kategória:</label>
         <div class="input-group">
-            <select class="form-select form-control select-form-height" name="type" value="<?php echo $data->getType() ?>">
-                <option>Zákusok</option>
-                <option>Torta</option>
-                <option>Múčnik</option>
-                <option>Kysnutý koláč</option>
-                <option>Iné</option>
+            <select class="form-select form-control select-form-height" name="category" value="<?php echo $data['recept']->getCategory() ?>">
+                <?php foreach ($data['categiries'] as $catogory) { ?>
+                <option><?php echo $catogory->getName() ?></option>
+                <?php } ?>
             </select>
         </div>
     </div>
-<!--
+
        <div>
            <label class="col-form-label">Vyber obrázok z počítača:</label>
-           <input type="file" id="avatar"  accept="image/png, image/jpeg" name="image" value="<?php echo $data->getImage() ?>">
+           <input type="file" id="avatar"  accept="image/png, image/jpeg" name="image" value="<?php echo $data['recept']->getImage() ?>">
        </div>
--->
+
         <button type="submit" class="btn my-button color-create odsadenie">Odoslať</button>
        <p id="demo"></p>
     </div>

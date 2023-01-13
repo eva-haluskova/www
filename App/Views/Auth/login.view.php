@@ -5,7 +5,7 @@ $layout = 'auth';
 <div class="container">
     <div class="row">
         <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-            <div class="card card-signin my-5">
+            <div class="card card-signin my-5 family-color">
                 <div class="card-body">
                     <h5 class="card-title text-center">Prihlásenie</h5>
                     <div class="text-center text-danger mb-3">
@@ -22,8 +22,13 @@ $layout = 'auth';
                                    placeholder="Password" required>
                         </div>
                         <div class="text-center">
-                            <button class="btn btn-primary" type="submit" name="submit">Prihlásiť
+                            <button class="btn btn-primary color-create border-salala" type="submit" name="submit">Prihlásiť
                             </button>
+                        </div>
+                        <div class="text-center mt-3">
+                            <p>Ešte nie si zaregistrovaný?
+                                <a class="a-login-two" href="?c=auth&a=registration">Tu sa zaregistruj.</a>
+                            </p>
                         </div>
                     </form>
                 </div>

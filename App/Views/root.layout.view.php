@@ -1,6 +1,11 @@
 <?php
 /** @var string $contentHTML */
 /** @var \App\Core\IAuthenticator $auth */
+
+use App\Models\Type;
+
+$categories = Type::getAll();
+// @var Type[] $data
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -86,52 +91,66 @@
 
 
 
-<nav class="navbar navbar-expand-lg navbar-navbar navbar-light navbar-bg">
+        <nav class="navbar navbar-expand-lg navbar-navbar navbar-light navbar-bg">
 
-    <a class="navbar-brand" href="?c=home">VYPEČENÁ RECEPTÁREŇ</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav">
- <!--           <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href=?c=recipes" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Recepty
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#">Zákusky</a>
-                    <a class="dropdown-item" href="#">Torty</a>
-                    <a class="dropdown-item" href="#">Múčniky</a>
-                    <a class="dropdown-item" href="#">Kysnuté koláče</a>
-                    <a class="dropdown-item" href="#">...</a>
-                </div>
-            </li> -->
-            <li class="nav-item">
-                <a class="nav-link" href="?c=recipes">Recepty</a>
-            </li>
+            <a class="navbar-brand" href="?c=home">VYPEČENÁ RECEPTÁREŇ</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
 
-            <li class="nav-item">
-                <a class="nav-link" href="?c=home&a=contact">O nás</a>
-            </li>
-        </ul>
-    </div>
-    <!--
-        <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-                <?php if ($auth->isLogged()) { ?>
-                    <a class="nav-link" href="?c=auth&a=logout">Logout</a>
-                <?php } else { ?>
-                    <a class="nav-link" href="?c=auth&a=login">Login</a>
-                <?php } ?>
-            </li>
-        </ul>
-    -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href=?c=recipes" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Recepty
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <?php foreach ($categories as $catogory) { ?>
+                            <a class="dropdown-item" href="?c=recipes&a=index&id=<?php echo $catogory->getId() ?>"><?php echo $catogory->getName() ?></a>
+                            <?php } ?>
+
+              <!--              <a class="dropdown-item" href="?c=recipes&a=zakusky">Zákusky</a>
+                            <a class="dropdown-item" href="?c=recipes&a=torty">Torty</a>
+                            <a class="dropdown-item" href="?c=recipes&a=mucniky">Múčniky</a>
+                            <a class="dropdown-item" href="?c=recipes&a=kysnute">Kysnuté koláče</a>
+                            <a class="dropdown-item" href="?c=recipes&a=ine">Iné</a> -->
+                        </div>
+                    </li>
+<!--
+                    <li class="nav-item">
+                        <a class="nav-link" href="?c=recipes">Recepty</a>
+                    </li>
+-->
+                    <li class="nav-item">
+                        <a class="nav-link" href="?c=home&a=contact">O nás</a>
+                    </li>
+
+                </ul>
 
 
-</nav>
+
+            </div>
+
+            <ul class="navbar-nav ms-auto ">
 
 
-<!--content-->
+                <li class="nav-item nav-item-right">
+                    <?php if ($auth->isLogged()) { ?>
+                        <a class="nav-link" href="?c=auth&a=logout">Logout</a>
+                        <!--       <a class="nav-link" href="?c=home">Logout</a> -->
+                    <?php } else { ?>
+                        <a class="nav-link" href="?c=auth&a=login">Login</a>
+                        <!--        <a class="nav-link" href="?c=home">Login</a> -->
+                    <?php } ?>
+                </li>
+
+            </ul>
+
+        </nav>
+
+
+
+        <!--content-->
 <div class="container-fluid mt-3">
     <div class="web-content">
         <?= $contentHTML ?>
