@@ -12,6 +12,14 @@ class Comment extends Model
     protected $author;
     protected $recipe;
 
+    public function getUserName(): string {
+        try {
+            return User::getOne($this->getAuthor())->getLogin();
+        } catch (\Exception $e) {
+            throw new \Exception('User not found:' . $e->getMessage(), 0, $e);
+        }
+    }
+
     /**
      * @return mixed
      */

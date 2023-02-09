@@ -65,25 +65,6 @@ abstract class AControllerBase
         return new ViewResponse($this->app, $viewName, $data);
     }
 
-
-
-    /**
-     * Helper method for returning response type ViewResponse
-     * @param null $data
-     * @param null $dataTwo
-     * @param null $viewName
-     * @return ViewResponse
-     */
-    protected function htmlTwo($data = null, $dataTwo = null, $viewName = null) : ViewResponse
-    {
-        if ($viewName == null) {
-            $viewName = $this->app->getRouter()->getControllerName() . DIRECTORY_SEPARATOR . $this->app->getRouter()->getAction();
-        } else {
-            $viewName = is_string($viewName) ? ($this->app->getRouter()->getControllerName() . DIRECTORY_SEPARATOR . $viewName) : ($viewName['0'] . DIRECTORY_SEPARATOR . $viewName['1']);
-        }
-        return new ViewResponse($this->app, $viewName, $data);
-    }
-
     /**
      * Helper method for returning response type JsonResponse
      * @param $data

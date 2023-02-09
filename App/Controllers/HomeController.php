@@ -41,4 +41,13 @@ class HomeController extends AControllerBase
     {
         return $this->html();
     }
+
+
+    public function search() {
+        $search = $this->request()->getValue('search');
+        $recipes = Recipe::getAll("title LIKE ?", ["%$search%"]);
+        //$recipes = Recipe::getAll();
+        //return $this->html($recipes);
+        return $this->html($recipes, viewName: 'index');
+    }
 }

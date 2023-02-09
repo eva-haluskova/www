@@ -1,6 +1,8 @@
 <?php
 /** @var string $contentHTML */
 /** @var \App\Core\IAuthenticator $auth */
+use App\Models\Type;
+$categories = Type::getAll();
 ?>
 
 <!DOCTYPE html>
@@ -52,28 +54,17 @@
                             Recepty
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="?c=recipes&a=zakusky">Zákusky</a>
-                            <a class="dropdown-item" href="?c=recipes&a=torty">Torty</a>
-                            <a class="dropdown-item" href="?c=recipes&a=mucniky">Múčniky</a>
-                            <a class="dropdown-item" href="?c=recipes&a=kysnute">Kysnuté koláče</a>
-                            <a class="dropdown-item" href="?c=recipes&a=ine">Iné</a>
+                            <?php foreach ($categories as $catogory) { ?>
+                                <a class="dropdown-item" href="?c=recipes&a=index&id=<?php echo $catogory->getId() ?>"><?php echo $catogory->getName() ?></a>
+                            <?php } ?>
                         </div>
                     </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="?c=recipes">Recepty</a>
-                    </li>
-
                     <li class="nav-item">
                         <a class="nav-link" href="?c=home&a=contact">O nás</a>
                     </li>
-
                 </ul>
-
-
-
             </div>
-            </nav>
+        </nav>
 
 
 <!-- CONTENT-->

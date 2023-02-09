@@ -5,7 +5,6 @@
 use App\Models\Type;
 
 $categories = Type::getAll();
-// @var Type[] $data
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -57,40 +56,7 @@ $categories = Type::getAll();
 <div id="page-container">
     <div id="content-wrap">
 
-
-<!--
-<nav class="navbar navbar-expand-sm bg-light">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="?c=home">
-            <img src="public/images/vaiicko_logo.png" title="<?= \App\Config\Configuration::APP_NAME ?>"
-                 title="<?= \App\Config\Configuration::APP_NAME ?>">
-        </a>
-        <ul class="navbar-nav me-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="?c=home&a=contact">Kontakt</a>
-            </li>
-        </ul>
-        <?php if ($auth->isLogged()) { ?>
-            <span class="navbar-text">Prihlásený používateľ: <b><?= $auth->getLoggedUserName() ?></b></span>
-        <?php } ?>
-        <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-                <?php if ($auth->isLogged()) { ?>
-                    <a class="nav-link" href="?c=auth&a=logout">Logout</a>
-                <?php } else { ?>
-                    <a class="nav-link" href="?c=auth&a=login">Login</a>
-                <?php } ?>
-            </li>
-        </ul>
-    </div>
-</nav>
--->
-
-
-<!--navbar-->
-
-
-
+        <!-- navbar-->
         <nav class="navbar navbar-expand-lg navbar-navbar navbar-light navbar-bg">
 
             <a class="navbar-brand" href="?c=home">VYPEČENÁ RECEPTÁREŇ</a>
@@ -109,18 +75,7 @@ $categories = Type::getAll();
                             <a class="dropdown-item" href="?c=recipes&a=index&id=<?php echo $catogory->getId() ?>"><?php echo $catogory->getName() ?></a>
                             <?php } ?>
 
-              <!--              <a class="dropdown-item" href="?c=recipes&a=zakusky">Zákusky</a>
-                            <a class="dropdown-item" href="?c=recipes&a=torty">Torty</a>
-                            <a class="dropdown-item" href="?c=recipes&a=mucniky">Múčniky</a>
-                            <a class="dropdown-item" href="?c=recipes&a=kysnute">Kysnuté koláče</a>
-                            <a class="dropdown-item" href="?c=recipes&a=ine">Iné</a> -->
-                        </div>
                     </li>
-<!--
-                    <li class="nav-item">
-                        <a class="nav-link" href="?c=recipes">Recepty</a>
-                    </li>
--->
                     <li class="nav-item">
                         <a class="nav-link" href="?c=home&a=contact">O nás</a>
                     </li>
@@ -133,14 +88,20 @@ $categories = Type::getAll();
 
             <ul class="navbar-nav ms-auto ">
 
-
                 <li class="nav-item nav-item-right">
                     <?php if ($auth->isLogged()) { ?>
-                        <a class="nav-link" href="?c=auth&a=logout">Logout</a>
-                        <!--       <a class="nav-link" href="?c=home">Logout</a> -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <?php echo $auth->getLoggedUserName() ?>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="?c=auth&a=logout">Logout</a>
+                        <a class="dropdown-item" href="?c=types">Spravovat kategorie</a>
+                    </div>
+                </li>
+
                     <?php } else { ?>
                         <a class="nav-link" href="?c=auth&a=login">Login</a>
-                        <!--        <a class="nav-link" href="?c=home">Login</a> -->
                     <?php } ?>
                 </li>
 
@@ -149,15 +110,15 @@ $categories = Type::getAll();
         </nav>
 
 
-
         <!--content-->
 <div class="container-fluid mt-3">
     <div class="web-content">
         <?= $contentHTML ?>
     </div>
 </div>
+
 <!--footer-->
-        </div>
+    </div>
 
 
     <footer id="footer" class="text-center text-lg-start container-fluid" style="background-color: navajowhite;">
@@ -178,5 +139,7 @@ $categories = Type::getAll();
 
 
 </div>
+
+
 </body>
 </html>

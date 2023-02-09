@@ -165,6 +165,10 @@ h1 a{color:#131313; font-weight:bold;}
     font-size:16px;
     font-weight:300;
 }
+
+
+
+
 .profile-card-5 .btn-primary{
     background-color:#4E5E30;
     border-color:#4E5E30;
@@ -229,6 +233,12 @@ h5 {
     margin: 10px;
 }
 
+
+.my-button-create {
+    padding-top: 10px;
+    margin-top: 10px;
+}
+
 .moje-zarovnanie {
     text-align: center;
 }
@@ -256,7 +266,20 @@ h5 {
     justify-content: center;
     align-items: flex-start;
 
+}
 
+
+.flex-rule-2 {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+}
+
+
+
+
+.commeten-area {
+    margin-top: 10px;
 }
 
 .title-recipe {
@@ -268,13 +291,13 @@ h5 {
 }
 
 .flex-rule-child {
-    padding-left: 2vh;
-    padding-right: 2vh;
-    padding-bottom: 1vh;
-    margin-bottom: 3vh;
-    margin-right:1vw;
-    margin-left:2vw;
-}
+     padding-left: 2vh;
+     padding-right: 2vh;
+     padding-bottom: 1vh;
+     margin-bottom: 3vh;
+     margin-right:1vw;
+     margin-left:2vw;
+ }
 
 .flex-rule-child1 {
     background-color: #E2F0CB;
@@ -284,6 +307,15 @@ h5 {
 .flex-rule-child2 {
     background-color: #B5EAD7;
     width: 35vw;
+}
+
+
+.flex-rule-child3 {
+    width: 20vw;
+}
+
+.flex-rule-child4 {
+    width: 50vw;
 }
 
 .odsadenie {
@@ -305,6 +337,8 @@ h5 {
     height: auto;
     width: 25vw;
 }
+
+
 
 .background-color-form {
     background-color:  #ffccd4;
@@ -336,7 +370,7 @@ h5 {
 }
 .bg-3 {
     background-color: #E2F0CB;
-    color: #000000;
+    color: black;
 }
 .bg-4 {
     background-color: #2f2f2f;
@@ -364,8 +398,8 @@ h5 {
 }
 
 .img-pro {
-    width: 40%;
-    height: auto;
+    width: 30vw;
+    height: 45vh;
 }
 
 @media only screen and (max-width: 700px) {
@@ -376,8 +410,21 @@ h5 {
     }
 
     .img-pro {
-        width: 90%;
-        height: auto;
+        width: 75vw;
+        height: 45vh;
+    }
+}
+
+@media only screen and (max-width: 550px) {
+
+    .content {
+        float: none;
+        width: 100%;
+    }
+
+    .img-pro {
+        width: 75vw;
+        height: 75vh;
     }
 }
 
@@ -399,7 +446,11 @@ h5 {
 }
 
 .content-margin-bottom {
-    margin-bottom: 15vh;
+    margin-bottom: 1vh;
+}
+
+.content-margin-bottom-recipes {
+    margin-bottom: 8vh;
 }
 
 .content-margin-bottom-create {
@@ -495,7 +546,7 @@ footer {
 }
 
 #content-wrap {
-    padding-bottom: 4rem;    /* Footer height */
+    padding-bottom: 6rem;    /* Footer height */
 }
 
 #footer {
@@ -525,4 +576,47 @@ footer {
 
 .odsatenie-dole-registracia {
     padding-bottom: 12vh;
+}
+
+.delete-edit-icon {
+    width: 15px;
+    height: 15px;
+}
+
+.img-recipes {
+    max-width: 100%;
+    max-height:  80%;
+}
+
+.comments-section {
+
+    margin-bottom: 20vh;
+    padding-bottom: 1vh;
+    background-color: #ffccd4;
+}
+
+.comment-dov {
+    margin-bottom: 1vh;
+    margin-top: 1vh;
+    margin-right: 3vw;
+    margin-left: 3vw;
+}
+
+.form-popup {
+    display: none;
+    position: fixed;
+    top: 15vh;
+    left:40vw;
+    border: 3px solid black;
+    z-index: 9;
+}
+
+.form-container {
+    max-width: 300px;
+    padding: 10px;
+    background-color: pink;
+}
+
+#addTypeForm {
+    display: none;
 }

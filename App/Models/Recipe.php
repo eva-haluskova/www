@@ -14,6 +14,14 @@ class Recipe extends Model
     protected $author;
     protected $category;
 
+    public function getNameOfType(): string {
+        try {
+            return Type::getOne($this->getCategory())->getName();
+        } catch (\Exception $e) {
+            throw new \Exception('Type not found:' . $e->getMessage(), 0, $e);
+        }
+    }
+
     /**
      * @return mixed
      */

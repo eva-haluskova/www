@@ -7,41 +7,100 @@ use App\Core\Responses\Response;
 use App\Models\Comment;
 use App\Models\Recipe;
 use App\Models\Type;
-use App\Models\User;
 
 class RecipesController extends AControllerBase
 {
 
-    public function index(): Response
-    {
-        $id = $this->request()->getValue('id');
-        $recipes = Recipe::getAll("category = ?", [$id]);
+    /*
+     * vypise vsetky recepty daneho typu
+     */
+    public function index(): Response {
+        $idType = $this->request()->getValue('id');
+
+        $recipes = Recipe::getAll("category = ?", [$idType]);
+
         return $this->html($recipes);
     }
 
-    public function delete() {
-        $id = $this->request()->getValue('id');
-        $recipeToDelete = Recipe::getOne($id);
 
-        // deleteovanie komentarov
-        $comments = Comment::getAll("recipe = ?", [$id]);
-        if ($comments) {
-            foreach ($comments as $comment) {
-                $comment->delete();
-            }
+    /*
+     * zobrazenie detailu receptu
+     */
+    public function display() {
+        $idRecipe = $this->request()->getValue('id');
+        $error = $this->request()->getValue('e');
+
+        if ($error) {
+            return $this->html(viewName: 'content');
         }
 
-
-        if ($recipeToDelete) {
-            $recipeToDelete->delete();
+        if(!$idRecipe) {
+            return $this->redirect("?c=recipes&a=display&e=chyba");
         }
 
-        return $this->redirect("?c=home");
+        $recipeToDisplay = Recipe::getOne($idRecipe);
+
+        if(!$recipeToDisplay) {
+            return $this->redirect("?c=recipes&a=display&e=chyba");
+        }
+
+        $comments = Comment::getAll("recipe = ?", [$idRecipe]);
+        $data = ['recept' => $recipeToDisplay, 'comments' => $comments];
+
+        return $this->html($data, viewName: 'content');
     }
 
+
+    /*
+     * vymaze recept spolu so vsetkymi jeho komentarmi a obrazkom
+     */
+    public function delete()
+    {
+        $idRecipe = $this->request()->getValue('id');
+
+        $recipeToDelete = Recipe::getOne($idRecipe);
+
+        if ($recipeToDelete) {
+            // deleteovanie komentarov
+            $commentsToDelete = Comment::getAll("recipe = ?", [$idRecipe]);
+            if ($commentsToDelete) {
+                foreach ($commentsToDelete as $comment) {
+                    $comment->delete();
+                }
+            }
+
+            // zmazanie obrazka z priecinku
+            $pathOdImage = "public/images/{$recipeToDelete->getImage()}";
+            if ($pathOdImage != "public/images/universal.jpg") {
+                unlink($pathOdImage);
+            }
+
+            $recipeToDelete->delete();
+        } else {
+            return $this->json(['e' => "error"]);
+        }
+
+        return $this->json(['recipe' => $idRecipe]);
+    }
+
+
+    /*
+     * nachysta data pre vytvorenie noveho receptu, zobrazi formular na vytvorenie receptu
+     */
+    public function create() {
+        $categories = Type::getAll();
+        $data = ['categiries' => $categories,'recept' => null];
+
+        return $this->html($data, viewName: 'create.form');
+    }
+
+
+    /*
+     * nachysta data z receptu ktory sa bude dalej editovat vo formulari
+     */
     public function edit() {
-        $id = $this->request()->getValue('id');
-        $recipeToEdit = Recipe::getOne($id);
+        $idRecipe = $this->request()->getValue('id');
+        $recipeToEdit = Recipe::getOne($idRecipe);
 
         $categories = Type::getAll();
         $data = ['categiries' => $categories, 'recept' => $recipeToEdit];
@@ -49,120 +108,58 @@ class RecipesController extends AControllerBase
         return $this->html($data, viewName: 'create.form');
     }
 
-    public function create() {
-        $categories = Type::getAll();
-        $data = ['categiries' => $categories, 'recept' => new Recipe()];
-        return $this->html($data, viewName: 'create.form');
-    }
 
     /**
-     * @return \App\Core\Responses\RedirectResponse
+     * @return \App\Core\Responses\ViewResponse
      * @throws \Exception
+     * ulozenie receptu
      */
-
     public function store() {
 
-        $id = $this->request()->getValue('id');
-        $recipe = ($id ? Recipe::getOne($id) : new Recipe()); //kontrolujem ci pridavam recept alebo upravujem stary....
+        $idRecipe = $this->request()->getValue('id');
+        $recipe = ($idRecipe ? Recipe::getOne($idRecipe) : new Recipe()); //kontrolujem ci pridavam recept alebo upravujem stary....
 
 
-     /*   $title = $this->request()->getValue('title');
+        $title = $this->request()->getValue('title');
         $ingredient = $this->request()->getValue('ingredient');
         $process = $this->request()->getValue('process');
-        $category = $this->request()->getValue('category'); */
 
-  /*      if (is_string($title) && is_string($ingredient) && is_string($process)
-            &&
-            strlen($title) >= 5 && strlen($title) <= 40 &&
-            strlen($process) >= 10 && strlen($ingredient) >= 10)
-            //&&
+        if (strlen($title) >= 3 && strlen($title) <= 65 &&
+            strlen($ingredient) >= 5 && strlen($ingredient) <= 500 &&
+            strlen($process) >= 5 && strlen($process) <= 2000) {
 
-            // TOTO ODRAZU OSETRI
-          //  ($category == "Zákusok" || $category == "Torta" || $category == "Múčnik"
-            //    || $category == "Kysnutý koláč" || $category == "Iné"))
+            $recipe->setTitle($title);
+            $recipe->setIngredient($ingredient);
+            $recipe->setProcess($process);
+            $recipe->setAuthor($this->app->getAuth()->getLoggedUserId());
 
-        { */
-      //  if ($recipe == null) {
-        //    $recipe = new Recipe();
-        //}
-            $recipe->setTitle($this->request()->getValue('title'));
-
-            $recipe->setProcess($this->request()->getValue('process'));
-            $recipe->setIngredient($this->request()->getValue('ingredient'));
-            // AJ TOTO PEKNE OSETRI
-
-
-
-           // $recipe->setCategory($this->request()->getValue('category'));
-
-            $category = $this->request()->getValue('category');
-            $categories = Type::getAll();
-            foreach ($categories as $cat) {
-                if ($cat->getName() == $category) {
-                    $recipe->setCategory($cat->getId());
+            $typeofRecipe = $this->request()->getValue('typ');
+            $types = Type::getAll();
+            foreach ($types as $typ) {
+                if ($typ->getName() == $typeofRecipe) {
+                    $recipe->setCategory($typ->getId());
                 }
             }
 
+            $image = $_FILES['image']['tmp_name'];
+            move_uploaded_file($image, "public/images/{$_FILES['image']['name']}");
 
-        /*    if ($recipe->getImage() == null) { */
-                $recipe->setImage("universal.jpg");
-       /*     } else {
-                $recipe->setImage($this->request()->getValue('image'));
-            } */
-           // $recipe->setAuthor($this->request()->getValue('id_user'));
-            $recipe->setAuthor($this->app->getAuth()->getLoggedUserId());
-
-           // $recipe->setUserId(2);//$this->request()->getValue('user_id'));
+            if ($this->request()->getValue('image') == null) {
+                if (!$idRecipe) {
+                    $recipe->setImage("universal.jpg");
+                }
+            } else {
+                $recipe->setImage($_FILES['image']['name']);
+            }
 
             $recipe->save();
-   /*     } else {
-            $myfile = fopen("testfile.txt", "a");
-            $txt = "Nespravny vstup\n";
-            fwrite($myfile,$txt);
-            fclose($myfile);
-        } */
-        return $this->redirect("?c=home");
-    }
+            return $this->redirect("?c=home");
+        } else {
+            $types = Type::getAll();
+            $data = ['message' => 'Zadal si prilis malo znakov!','categiries' => $types, 'recept' => null];
+            return $this->html($data, viewName: 'create.form');
 
-    public function display() {
-        $id = $this->request()->getValue('id');
-        $recipeToDisplay = Recipe::getOne($id);
-
-        $comments = Comment::getAll();
-        $users = User::getAll();
-        $data = ['recept' => $recipeToDisplay, 'comments' => $comments, 'users' => $users];
-
-        return $this->html($data, viewName: 'content');
-    }
-
-    public function mucniky(): Response
-    {
-        $recipes = Recipe::getAll("category = ?", [3]);
-        return $this->html($recipes, viewName: 'index');
-    }
-
-    public function kysnute(): Response
-    {
-        $recipes = Recipe::getAll("category = ?", [2]);
-        return $this->html($recipes, viewName: 'index');
-    }
-
-    public function torty(): Response
-    {
-        $recipes = Recipe::getAll("category = ?", [4]);
-        return $this->html($recipes, viewName: 'index');
-    }
-
-    public function zakusky(): Response
-    {
-        $recipes = Recipe::getAll("category = ?", [1]);
-        return $this->html($recipes, viewName: 'index');
-    }
-
-    public function ine(): Response
-    {
-        $recipes = Recipe::getAll("category = ?", [5]);
-        return $this->html($recipes, viewName: 'index');
+        }
     }
 
 }
