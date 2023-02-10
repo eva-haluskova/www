@@ -68,22 +68,26 @@
                                     <h6 class="fw-bold mb-1">
                                         <i><?php echo $comment->getUserName(); ?></i>
                                     </h6>
+
+
                                     <div class="flex-rule">
 
                                         <!-- text komentara-->
-                                        <p class="mb-0 flex-rule-child commeten-area flex-rule-child4 ">
+                                        <p class="mb-0 flex-rule-child commeten-area flex-rule-child4">
                                             <?= $comment->getText() ?>
                                         </p>
 
                                         <!--ak je pouzivatel prihlaseny a je autorom komentara, tak sa mu zobrazi tlacidlo na zmazanie a upravu komentara-->
                                         <div class="d-flex align-items-center mb-3  flex-rule-child flex-rule-child3 ">
-                                         <?php if ($auth->isLogged() && $comment->getAuthor() == $auth->getLoggedUserId()) { ?>
-                                              <button class="btn my-button color-create odsadenie" type="submit" onclick="deleteComment(<?=$comment->getId() ?>)">Vymaz</button>
-                                              <button class="btn my-button color-create odsadenie" type="submit" onclick="editC(<?=$comment->getId() ?>)">Uprav</button>
-                                         <?php } ?>
+                                            <?php if ($auth->isLogged() && $comment->getAuthor() == $auth->getLoggedUserId()) { ?>
+                                                <button class="btn my-button color-create odsadenie" type="submit" onclick="deleteComment(<?=$comment->getId() ?>)">Vymaz</button>
+                                                <button class="btn my-button color-create odsadenie" type="submit" onclick="editC(<?=$comment->getId() ?>)">Uprav</button>
+                                            <?php } ?>
                                         </div>
 
                                     </div>
+
+
                                 </div>
                             </div>
                         </div>

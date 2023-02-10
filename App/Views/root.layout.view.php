@@ -96,7 +96,9 @@ $categories = Type::getAll();
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="?c=auth&a=logout">Logout</a>
-                        <a class="dropdown-item" href="?c=types">Spravovat kategorie</a>
+                        <?php if ($auth->isLogged() && $auth->getLoggedUserName() == 'admin') { ?>
+                            <a class="dropdown-item" href="?c=types">Spravovat kategorie</a>
+                        <?php } ?>
                     </div>
                 </li>
 

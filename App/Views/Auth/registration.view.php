@@ -18,7 +18,7 @@ $layout = 'auth';
 
                         <h6 class="mb-0">Prihlasovacie meno:</h6>
                         <div class="form-label-group mb-3 odsadenie-1">
-                            <input name="login" type="text" id="login" class="form-control" placeholder="Login" required autofocus value ="<?php if ($data != null) {
+                            <input name="login" type="text" id="login" class="form-control" placeholder="Login" required autofocus minlength="4" maxlength="30" value ="<?php if ($data != null) {
                                 echo $data['login'];
                             }?>">
                         </div>
@@ -26,20 +26,20 @@ $layout = 'auth';
                         <h6 class="mb-0">Email:</h6>
                         <div class="form-label-group mb-3 odsadenie-1">
                             <input name="email" type="email" id="email" class="form-control"
-                                   placeholder="Email" required value ="<?php if ($data != null) {
+                                   placeholder="Email" required minlength="5" maxlength="40" value ="<?php if ($data != null) {
                                 echo $data['email'];
                             }?>">
                         </div>
 
                         <h6 class="mb-0">Heslo:</h6>
                         <div class="form-label-group mb-3 odsadenie-1">
-                            <input name="password_one" type="password" id="password_one" class="form-control"
+                            <input name="password_one" type="password" id="password_one" minlength="8" maxlength="255" class="form-control"
                                    placeholder="Password" required>
                         </div>
 
                         <h6 class="mb-0">Zopakuj heslo:</h6>
                         <div class="form-label-group mb-3 odsadenie-1">
-                            <input name="password_two" type="password" id="password_two" class="form-control"
+                            <input name="password_two" type="password" id="password_two" minlength="8" maxlength="255" class="form-control"
                                    placeholder="Repead password" required>
                         </div>
 

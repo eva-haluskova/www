@@ -53,7 +53,6 @@ class AuthController extends AControllerBase
     public function logout(): Response
     {
         $this->app->getAuth()->logout();
-        //return $this->html();
         return $this->redirect('?c=home');
     }
 
@@ -70,16 +69,40 @@ class AuthController extends AControllerBase
     {
         $login = $this->request()->getValue('login');
         $email = $this->request()->getValue('email');
-
         $password_one = $this->request()->getValue('password_one');
-        $password_two = $this->request()->getValue('password_two');
+        $password_two = $this->request()->getValue('password_two'); // kontrolne
+
+        // kontrola loginu
+        if (strlen($login) <= 3) {
+            $data = ['message' => 'Príliš krátky login!', 'login' => $login, 'email' => $email];
+            return $this->html($data, viewName: 'registration');
+        }
+
+        // kontrola mailu
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $data = ['message' => 'Zadal si neplatný email', 'login' => $login, 'email' => $email];
+            return $this->html($data, viewName: 'registration');
+        }
+
+
+        // Validate password strength
+        $uppercase = preg_match('@[A-Z]@', $password_one);
+        $lowercase = preg_match('@[a-z]@', $password_one);
+        $number    = preg_match('@[0-9]@', $password_one);
+        $specialChars = preg_match('@[^\w]@', $password_one);
+
+        if(!$uppercase || !$lowercase || !$number || !$specialChars || strlen($password_one) < 8) {
+            $data = ['message' => 'Helso musí mať aspoň 8 znakov a musí obsahovať apsoň jedno veľké písmeno, číslo a špeciálny znak.', 'login' => $login, 'email' => $email];
+            return $this->html($data, viewName: 'registration');
+        }
+
+
         if($password_one != $password_two){
-            $data = ['message' => 'Zadal si zlé heslo!', 'login' => $login, 'email' => $email];
+            $data = ['message' => 'Zadal si zlé overovacie heslo!', 'login' => $login, 'email' => $email];
             return $this->html($data, viewName: 'registration');
         }
 
         $password = password_hash($this->request()->getValue('password_two'), PASSWORD_DEFAULT);
-
 
         $users = User::getAll();
         foreach ($users as $user) {
@@ -100,7 +123,6 @@ class AuthController extends AControllerBase
         $user->setEmail($email);
         $user->save();
 
-      //  return $this->redirect('?c=auth$a=login');
         return $this->redirect('?c=auth&a=login');
     }
 

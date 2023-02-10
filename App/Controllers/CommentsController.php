@@ -36,6 +36,7 @@ class CommentsController extends AControllerBase
         $id = $this->request()->getValue('id');
         $commentToEdit = Comment::getOne($id);
 
+
         return $this->html($commentToEdit, viewName: 'content');
        // $this->redirect("?c=recipes&a=display&id=$idRecipe");
 

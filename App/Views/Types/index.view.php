@@ -23,7 +23,7 @@
 <!--                <td colspan="2"></td>-->
                 <td colspan="2">
                     <a href="?c=types&a=delete&id=<?= $type->getId() ?>" class="btn my-button my-color">Zmaž</a>
-<!--                    <button class="btn my-button-color my-button" type="submit" onclick="deleteType(--><?//=$type->getId() ?>//)">Zmazať</button>
+<!--                    <button class="btn my-button-color my-button" type="submit" onclick="deleteType(--><?=$type->getId() ?><!--)">Zmazať</button>-->
                 </td>
             </tr>
         </div>

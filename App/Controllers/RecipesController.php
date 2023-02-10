@@ -76,11 +76,10 @@ class RecipesController extends AControllerBase
             }
 
             $recipeToDelete->delete();
+            return $this->json(['recipe' => $idRecipe]);
         } else {
             return $this->json(['e' => "error"]);
         }
-
-        return $this->json(['recipe' => $idRecipe]);
     }
 
 
