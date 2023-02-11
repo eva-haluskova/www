@@ -75,43 +75,57 @@
 
                     <hr class="my-0" />
 
-
                     <!-- content -->
                     <?php foreach ($data['comments'] as $comment) { ?>
-                        <div class="card-body p-4">
-                            <div class="d-flex flex-start">
-                                <div>
-                                    <h6 class="fw-bold mb-1">
-                                        <i>
-                                            <?= $comment->getUserName() ?>
-                                        </i>
-                                    </h6>
+                    <div class="card-body p-4 id="com-<?=$comment->getId() ?>"">
+                    <div class="d-flex flex-start">
+                        <div>
+                            <h6 class="fw-bold mb-1">
+                                <i>
+                                    <?= $comment->getUserName() ?>
+                                </i>
+                            </h6>
 
 
-                                    <?php if ($auth->isLogged() && $comment->getAuthor() == $auth->getLoggedUserId()) { ?>
-                                    <div class="flex-rule">
-                                        <p class=" flex-rule-child flex-rule-child4 commeten-area " ><?php echo $comment->getText() ?></p>
-                                        <div class="">
-                                            <button class="btn my-button my-button-color-1  my-margin my-border" type="submit" id="button-addon2">Upraviť</button>
-                                            <button class="btn my-button my-button-color-2 my-margin my-border" type="submit" id="button-addon2">Vymazať</button>
-                                        </div>
-                                    </div>
-                                    <?php } else { ?>
-                                    <p class="mb-0 flex-rule-child commeten-area flex-rule-child3">
-
-                                        <?= $comment->getText() ?>
-                                    </p>
-                                    <?php } ?>
-
-
-
-
+                            <div id="commentContent-<?=$comment->getId() ?>">
+                            <?php if ($auth->isLogged() && $comment->getAuthor() == $auth->getLoggedUserId()) { ?>
+                                <div class="flex-rule">
+                                    <p class=" flex-rule-child flex-rule-child4 commeten-area " ><?php echo $comment->getText() ?></p>
+                                        <button class="btn my-button my-button-color-1  my-margin my-border" type="submit" onclick="showEditCommentWindow(<?=$comment->getId() ?>)">Upraviť</button>
+                                        <button class="btn my-button my-button-color-2 my-margin my-border" type="submit" onclick="deleteComment(<?=$comment->getId() ?>)">Vymazať</button>
 
                                 </div>
+                            <?php } else { ?>
+                                <p class="mb-0 flex-rule-child commeten-area flex-rule-child3">
+
+                                    <?= $comment->getText() ?>
+                                </p>
+                            <?php } ?>
                             </div>
+
+                            <div id="commentEdit-<?=$comment->getId() ?>">
+                            <form  method="post" name="myForm" action="?c=comments&a=store&id=<?=$data['recept']->getId() ?>">
+                                <!--                                        TODO osetrit ak nebudu data receptu aby sa nezobrazil hidden-->
+                                <input type="hidden" name="comment-id">
+                                <div class="flex-rule">
+                                    <textarea class="form-control flex-rule-child commeten-area" rows="1" cols="85" placeholder="Pridaj komentar..." id="comment" name="text" ></textarea>
+                                    <button class="btn my-button color-create my-margin flex-rule-child my-border" type="submit" id="button-addon2">Pridať</button>
+                                </div>
+                            </form>
+                            </div>
+
+
+
                         </div>
-                        <hr class="my-0" />
-                    <?php } ?>
+                    </div>
+                </div>
+                <hr class="my-0" />
+                <?php } ?>
+
+
+
+
+
 
 
 
@@ -146,7 +160,6 @@
 
                 </div>
                 <!--koniec tela komentarov-->
-
 
             </div>
          </div>

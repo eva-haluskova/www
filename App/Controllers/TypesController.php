@@ -21,13 +21,26 @@ class TypesController extends AControllerBase
 
         $name = $this->request()->getValue('name');
 
+        if ($this->request()->getValue('name') == "") {
+            return $this->redirect("?c=types");
+        }
+
+        $name = trim(preg_replace('/\s\s+/', ' ', $name));
+
         $types = Type::getAll();
+
+        if (strlen($name) > 30) {
+            $data = ['message' => 'Názov je príliš dlhý!', 'types' => $types];
+            return $this->html($data,viewName: 'index');
+        } else if (strlen($name) < 3) {
+            $data = ['message' => 'Názov je príliš krátky! Musí mať minimálne 3 znaky', 'types' => $types];
+            return $this->html($data, viewName: 'index');
+        }
+
         foreach ($types as $type) {
             if ($type->getName() == $name) {
-                $types = Type::getAll();
-                $data = ['message' => 'Takáto kategória už existuje!', 'types' => $types];
+                $data = ['message' => 'Kategória ' . $name . ' už existuje!', 'types' => $types];
                 return $this->html($data,viewName: 'index');
-               // return $this->html();
             }
         }
 
@@ -57,27 +70,6 @@ class TypesController extends AControllerBase
         }
 
         return $this->redirect('?c=types');
-
-
-
-//        $idType = $this->request()->getValue('id');
-//
-//        //deletovanie receptov v kategorii
-//        $recipesToDelete = Recipe::getAll("category = ?",[$idType]);
-//        if($recipesToDelete) {
-//            foreach ($recipesToDelete as $recipe) {
-//                $recipe->delete();
-//            }
-//        }
-//
-//        $typeToDelete = Type::getOne($idType);
-//        if ($typeToDelete) {
-//            $typeToDelete->delete();
-//        } else {
-//            return $this->json(['e' => "error"]);
-//        }
-//
-//        return $this->json(['type' => $idType]);
     }
 
 

@@ -371,6 +371,16 @@ h5 { font-size: 18px; }
 
 .commeten-area { margin-top: 10px; }
 
+/* TYPES */
+#addTypeForm {
+    display: none;
+}
+
+.space-types {
+    padding-top: 1vh;
+    padding-bottom: 2vh;
+}
+
 /* RESPONZIVITA */
 
 /* formular */
@@ -473,9 +483,4 @@ h5 { font-size: 18px; }
         width: 75vw;
         height: 75vh;
     }
-}
-
-/*ESTE PRACOVNE*/
-#addTypeForm {
-    display: none;
 }

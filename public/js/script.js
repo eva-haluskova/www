@@ -43,34 +43,45 @@ function deleteRecipe(id) {
     xhr.send('id=' + id);
 }
 
-function deleteType(id) {
-    let xhr = new XMLHttpRequest();
-    xhr.onload = function() {
-        if (xhr.status === 200) {
-            let json = JSON.parse(xhr.responseText);
-            if (json.e) {
-                console.log(json.e);
-                return;
-            }
-            let divToRemove = document.querySelector("div#typ-" + json.type);
-            divToRemove.remove();
-        } else {
-            console.error(xhr.responseText);
-        }
-    };
-
-    xhr.open("POST", "http://localhost/?c=types&a=delete", true);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send('id=' + id);
-}
-
-
 function showAddTypeForm() {
     document.getElementById('addTypeForm').style.display = "block";
     document.getElementById('addType').style.display = "none";
 }
 
-function hideAddTypeForm() {
-    document.getElementById('addTypeForm').style.display = "none";
-    document.getElementById('addType').style.display = "block";
+
+function showEditCommentWindow(id) {
+    //let divToRemove = document.querySelector("div#com-" + json.comment);
+    alert("salal");
+    document.getElementById("commentContent" + id).style.display = "none";
+    document.getElementById("commentEdit" + id).style.display = "block";
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
