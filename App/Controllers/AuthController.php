@@ -5,12 +5,12 @@ namespace App\Controllers;
 use App\Config\Configuration;
 use App\Core\AControllerBase;
 use App\Core\Responses\Response;
-use App\Models\Recipe;
 use App\Models\User;
 
 /**
  * Class AuthController
  * Controller for authentication actions
+ * sluzi aj na ukladanie pouzivatelov
  * @package App\Controllers
  */
 class AuthController extends AControllerBase
@@ -24,11 +24,11 @@ class AuthController extends AControllerBase
         return $this->redirect(Configuration::LOGIN_URL);
     }
 
+
     /**
      * Login a user
      * @return \App\Core\Responses\RedirectResponse|\App\Core\Responses\ViewResponse
      */
-
     public function login(): Response
     {
         $formData = $this->app->getRequest()->getPost();
@@ -36,7 +36,6 @@ class AuthController extends AControllerBase
         if (isset($formData['submit'])) {
             $logged = $this->app->getAuth()->login($formData['login'], $formData['password']);
             if ($logged) {
-               // return $this->redirect('?c=admin');
                 return $this->redirect('?c=home');
             }
         }
@@ -56,8 +55,9 @@ class AuthController extends AControllerBase
         return $this->redirect('?c=home');
     }
 
+
     /**
-     * Registration a user
+     * registracia noveho pouzivatela
      * @return \App\Core\Responses\RedirectResponse|\App\Core\Responses\ViewResponse
      */
     public function registration(): Response
@@ -65,6 +65,12 @@ class AuthController extends AControllerBase
         return $this->html();
     }
 
+
+    /**
+     * ulozenie noveho pouzivatela
+     * @return \App\Core\Responses\RedirectResponse|\App\Core\Responses\ViewResponse
+     * @throws \Exception
+     */
     public function store()
     {
         $login = $this->request()->getValue('login');
@@ -96,7 +102,7 @@ class AuthController extends AControllerBase
             return $this->html($data, viewName: 'registration');
         }
 
-
+        // Spravne zadanie overovacie heslo
         if($password_one != $password_two){
             $data = ['message' => 'Zadal si zlé overovacie heslo!', 'login' => $login, 'email' => $email];
             return $this->html($data, viewName: 'registration');
@@ -104,6 +110,7 @@ class AuthController extends AControllerBase
 
         $password = password_hash($this->request()->getValue('password_two'), PASSWORD_DEFAULT);
 
+        // kontrola, či používateľ so zadaným loginom alebo emailom už neexsituje
         $users = User::getAll();
         foreach ($users as $user) {
             if ($user->getLogin() == $login) {
@@ -117,6 +124,7 @@ class AuthController extends AControllerBase
             }
         }
 
+        // vytvorenie a uloženie nového používateľa
         $user = new User();
         $user->setLogin($login);
         $user->setPassword($password);

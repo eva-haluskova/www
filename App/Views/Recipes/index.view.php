@@ -3,7 +3,7 @@
 use App\Models\Recipe;
 /** @var Recipe[] $data */
 ?>
-
+<!-- view dostane zoznam receptov podla zadanej kategorie ktore nasledne vypise -->
 <div class="content-margin-bottom-recipes">
 <div class="container-fluid">
     <section>
@@ -21,7 +21,7 @@ use App\Models\Recipe;
                                         <?= $recipe->getTitle() ?>
                                     </h5>
                                 </a>
-
+                                <!-- ak je pouzivatel prihlaseny, ma moznost vymazat alebo upravit svoj recept -->
                                 <?php if ($auth->isLogged() && $recipe->getAuthor() == $auth->getLoggedUserId()) { ?>
                                 <div class="d-flex justify-content-center">
                                     <a href="?c=recipes&a=edit&id=<?= $recipe->getId() ?>" class="btn my-button my-button-color-1">Upraviť</a>

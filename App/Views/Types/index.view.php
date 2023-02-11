@@ -10,7 +10,7 @@
 
 
         <div class="space-types">
-        <!-- pridavanie katogorii-->
+        <!-- PRIDAVANIE KATEGORII -->
         <div class="text-center text-danger mb-3">
             <?= @$data['message'] ?>
         </div>
@@ -37,7 +37,7 @@
         </div>
 
 
-    <!-- kategorie -->
+    <!-- KATEGORIE -->
     <table class="table table-hover family-font">
         <tbody>
         <?php foreach ($data['types'] as $type) { ?>
@@ -53,8 +53,6 @@
         <?php } ?>
         </tbody>
     </table>
-
-
 
     </div>
 </div>

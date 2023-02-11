@@ -1,12 +1,15 @@
+<?php
+/** @var Array $data */
+?>
+
 <div class="content-margin-bottom-create family-font ">
 <div class="container form-field background-color-form">
 
 <form method="post" name="myForm" onsubmit="return validateForm()" action="?c=recipes&a=store" enctype="multipart/form-data">
    <div class="align-forms">
 
-    <?php /** @var Array $data */
-
-       if($data['recept'] != null) { ?>
+     <!-- vypise nadpis formulara podla toho, ci sa ide recept vytvarat alebo editovat -->
+     <?php  if($data['recept'] != null) { ?>
         <div>
             <h2 class = "align-forms">
                 Uprav recept
@@ -21,11 +24,12 @@
         </div>
     <?php } ?>
 
+   <!-- vypisanie chybovej spravy v pripade zlych vstupov -->
    <div class="text-center text-danger mb-3">
        <?= @$data['message'] ?>
    </div>
 
-
+    <!-- zadavanie vstupov -->
     <div class="mb-3" >
         <label class="col-form-label">Názov receptu:</label>
         <div class="input-group space-forms ">
@@ -71,9 +75,10 @@
        <?php  if($data['recept'] == null) { ?>
        <div class="space-forms" >
            <label class="col-form-label">Vyber obrázok z počítača:</label>
-           <input type="file" name="image" accept="image/jpeg image/png image/jpg" id="image" value="<?php if($data['recept'] != null) { echo $data['recept']->getImage(); } ?>">
+           <input type="file" name="image" accept="image/jpeg, image/png, image/jpg" id="image">
        </div>
        <?php } ?>
+
         <button type="submit" class="btn my-button color-create my-margin my-border">Odoslať</button>
        <p id="demo"></p>
     </div>

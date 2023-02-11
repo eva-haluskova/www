@@ -49,14 +49,28 @@ function showAddTypeForm() {
 }
 
 
-function showEditCommentWindow(id) {
-    //let divToRemove = document.querySelector("div#com-" + json.comment);
-    alert("salal");
-    document.getElementById("commentContent" + id).style.display = "none";
-    document.getElementById("commentEdit" + id).style.display = "block";
+function editComment(id) {
+    let xhr = new XMLHttpRequest();
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            let json = JSON.parse(xhr.responseText);
+            if (json.e) {
+                console.log(json.e);
+                return;
+            }
+            let divToHide = document.querySelector("div#commentEdit-" + json.comment);
+            // let divToShow = document.querySelector("div#commentEditWindow-" + json.comment);
+            divToHide.remove();
+            // divToShow.innerHTML();
+        } else {
+            console.error(xhr.responseText);
+        }
+    };
+
+    xhr.open("POST", "http://localhost/?c=comments&a=edit", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send('id=' + id);
 }
-
-
 
 
 

@@ -15,8 +15,8 @@ class CommentsController extends AControllerBase
         return $this->html($comments);
     }
 
-    /*
-     * cez ajax vymaze komentar
+    /**
+     * mazanie komentarov cez volanie
      */
     public function delete() : Response {
         $idComment = $this->request()->getValue('id');
@@ -32,12 +32,17 @@ class CommentsController extends AControllerBase
     }
 
 
+    /**
+     * editovanie komentarov
+     */
     public function edit() {
         $idComment = $this->request()->getValue('id');
         $commentToEdit = Comment::getOne($idComment);
 
+        return $this->json(['comment' => $idComment]);
+//        return $this->html($commentToEdit, viewName: 'content');
 
-        return $this->html($commentToEdit, viewName: 'content');
+
        // $this->redirect("?c=recipes&a=display&id=$idRecipe");
 
 //        $categories = Type::getAll();
@@ -46,28 +51,28 @@ class CommentsController extends AControllerBase
 //        return $this->html($data, viewName: 'create.form');
     }
 
-    public function create() {
-        $data = new Comment();
-        return $this->html($data, viewName: 'create.form');
-    }
 
+    /**
+     * ukladanie noveho komentara
+     */
     public function store() {
 
         $idRecipe = $this->request()->getValue('id');
         $idComment = $this->request()->getValue('idComment');
 
+        // aby sa neulozil prazdny komentar
         if ($this->request()->getValue('text') == "") {
             return $this->redirect("?c=recipes&a=display&id=$idRecipe");
         }
 
         $comment = ($idComment ? Comment::getOne($idComment) : new Comment());
 
-      //  $comment = new Comment();
+
         $comment->setText($this->request()->getValue('text'));
         $comment->setAuthor($this->app->getAuth()->getLoggedUserId());
         $comment->setRecipe($idRecipe);
         $comment->save();
-        //return $this->html($idRecipe);
+
         return $this->redirect("?c=recipes&a=display&id=$idRecipe");
     }
 

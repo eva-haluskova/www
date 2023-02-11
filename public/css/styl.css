@@ -233,7 +233,6 @@ h5 { font-size: 18px; }
 
 .form-field {
     width: 45vw !important;
-    alignment: center;
     margin-bottom: 2vh;
     border-radius: 3px;
 }
@@ -387,7 +386,6 @@ h5 { font-size: 18px; }
 @media only screen and (max-width: 1000px) {
     .form-field {
         width: 70vw !important;
-        alignment: center;
         margin-bottom: 2vh;
     }
 }
@@ -395,7 +393,6 @@ h5 { font-size: 18px; }
 @media only screen and (max-width: 992px) {
     .form-field {
         width: 90vw !important;
-        alignment: center;
         margin-bottom: 2vh;
     }
 }
@@ -406,7 +403,6 @@ h5 { font-size: 18px; }
 
     .flex-rule {
         display: block;
-        alignment: center;
         text-align: center;
     }
 

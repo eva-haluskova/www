@@ -1,4 +1,3 @@
-
 <!--KTO SME-->
 <div class ="contact">
 <div class="container-fluid container-fluid-contact bg-1 text-center">

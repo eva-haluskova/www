@@ -11,19 +11,18 @@ use App\Models\Type;
 class RecipesController extends AControllerBase
 {
 
-    /*
+    /**
      * vypise vsetky recepty daneho typu
      */
     public function index(): Response {
         $idType = $this->request()->getValue('id');
-
         $recipes = Recipe::getAll("category = ?", [$idType]);
 
         return $this->html($recipes);
     }
 
 
-    /*
+    /**
      * zobrazenie detailu receptu
      */
     public function display() {
@@ -51,7 +50,7 @@ class RecipesController extends AControllerBase
     }
 
 
-    /*
+    /**
      * vymaze recept spolu so vsetkymi jeho komentarmi a obrazkom
      */
     public function delete()
@@ -83,7 +82,7 @@ class RecipesController extends AControllerBase
     }
 
 
-    /*
+    /**
      * nachysta data pre vytvorenie noveho receptu, zobrazi formular na vytvorenie receptu
      */
     public function create() {
@@ -94,7 +93,7 @@ class RecipesController extends AControllerBase
     }
 
 
-    /*
+    /**
      * nachysta data z receptu ktory sa bude dalej editovat vo formulari
      */
     public function edit() {
@@ -109,8 +108,6 @@ class RecipesController extends AControllerBase
 
 
     /**
-     * @return \App\Core\Responses\ViewResponse
-     * @throws \Exception
      * ulozenie receptu
      */
     public function store(): Response {

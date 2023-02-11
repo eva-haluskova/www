@@ -24,8 +24,7 @@ class HomeController extends AControllerBase
     }
 
     /**
-     * Example of an action (authorization needed)
-     * @return \App\Core\Responses\Response|\App\Core\Responses\ViewResponse
+     *  vrati view so vsetkymi receptami
      */
     public function index(): Response
     {
@@ -42,12 +41,12 @@ class HomeController extends AControllerBase
         return $this->html();
     }
 
-
+    /**
+     * vrati recepty podla zadaneho hesla
+     */
     public function search() {
         $search = $this->request()->getValue('search');
         $recipes = Recipe::getAll("title LIKE ?", ["%$search%"]);
-        //$recipes = Recipe::getAll();
-        //return $this->html($recipes);
         return $this->html($recipes, viewName: 'index');
     }
 }

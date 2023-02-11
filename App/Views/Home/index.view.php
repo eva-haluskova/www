@@ -5,15 +5,14 @@ use App\Models\Recipe;
 
 ?>
 
-
-
+<!-- VYHLADAVANIE -->
 <div class="container">
     <div class="row  search-bar d-flex justify-content-center align-items-center">
         <div class="col-md-8">
             <div class="search">
                 <i class="fa fa-search"></i>
                 <form  method="post" name="myForm" onsubmit="return validateForm()" action="?c=home&a=search" >
-                <input type="text" class="form-control" name = "search" placeholder="Aký recept hľadáte?">
+                <input type="text" class="form-control" name = "search"  maxlength="65" placeholder="Aký recept hľadáte?">
                 <button class="btn  my-button-color-1 my-border">Hľadať</button>
                 </form>
             </div>
@@ -21,6 +20,8 @@ use App\Models\Recipe;
     </div>
 </div>
 
+<!-- PRIDANIE NOVEHO RECEPTU -->
+<!-- iba ak je pouzivatel prihlaseny -->
 <?php if ($auth->isLogged()) { ?>
     <div class="row align-forms create-margin">
         <div class="col">
@@ -29,6 +30,7 @@ use App\Models\Recipe;
     </div>
 <?php } ?>
 
+<!-- RECEPTY -->
 <div class="content-margin-bottom-recipes">
     <div class="container-fluid">
         <section>
@@ -46,7 +48,7 @@ use App\Models\Recipe;
                                             <?= $recipe->getTitle() ?>
                                         </h5>
                                     </a>
-
+                                    <!-- ak je pouzivatel prihlaseny, ma moznost vymazat alebo upravit svoj recept -->
                                     <?php if ($auth->isLogged() && $recipe->getAuthor() == $auth->getLoggedUserId()) { ?>
                                         <div class="d-flex justify-content-center">
                                             <a href="?c=recipes&a=edit&id=<?= $recipe->getId() ?>" class="btn my-button my-button-color-1 my-border">Upraviť</a>

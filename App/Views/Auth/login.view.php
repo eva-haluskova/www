@@ -1,16 +1,19 @@
 <?php
-$layout = 'root';
 /** @var Array $data */
 ?>
+<!-- prihlasovanie do aplikacie -->
 <div class="container registration-bottom family-font">
     <div class="row">
         <div class="col-sm-9 col-md-7 col-lg-5 mx-auto ">
             <div class="card card-signin my-5">
                 <div class="card-body family-color">
+
                     <h4 class="card-title text-center">Prihlásenie</h4>
+
                     <div class="text-center text-danger mb-3">
                         <?= @$data['message'] ?>
                     </div>
+
                     <form class="form-signin" method="post" action="<?= \App\Config\Configuration::LOGIN_URL ?>">
                         <div class="form-label-group mb-3 space-forms ">
                             <input name="login" type="text" id="login" class="form-control" placeholder="Login"
@@ -31,6 +34,7 @@ $layout = 'root';
                             </h5>
                         </div>
                     </form>
+
                 </div>
             </div>
         </div>
