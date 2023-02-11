@@ -1,37 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Allerta+Stencil&display=swap'); /* navbar */
+@import url('https://fonts.googleapis.com/css?family=Libre+Baskerville:400,700'); /* body */
 
-@import url('https://fonts.googleapis.com/css2?family=Allerta+Stencil&display=swap'); /*navbar*/
-@import url("https://fonts.googleapis.com/css2?family=Poppins:weight@100;200;300;400;500;600;700;800&display=swap");/*search*/
-@import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"); /*RECIPES*/
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700');
-@import url('https://fonts.googleapis.com/css?family=Libre+Baskerville:400,700');
+.family-color { background-color: #ffdead; }
 
-.odsadenie-1 {
-    margin-top: 1rem;
-}
+.family-font { font-family: 'Libre Baskerville', serif; }
 
-
-/*
-.navbar {
-    border-bottom: 1px solid grey;
-}
-
-.navbar-brand img {
-    width: 50px;
-}
-*/
-
-/*
-NAVBAR
- */
-
-.g {
-    width: 100%;
-}
-
-body {
-    font-family: 'Libre Baskerville', serif;
-}
-
+/* NAVBAR */
 .navbar-nav>li>a{
     text-transform: uppercase;
     font-size: 12px;
@@ -39,11 +13,17 @@ body {
     color: #000;
 }
 
-
 .navbar-navbar {
     position: static;
     top: 0px;
 }
+
+.navbar-bg{
+    background-color: #ffdead;
+    color: #000;
+}
+
+.navbar { font-family: 'Allerta Stencil', sans-serif; }
 
 .navbar-toggler {
     padding: .20rem .50rem;
@@ -55,7 +35,6 @@ body {
 
 .navbar-brand{
     color:#000;
-    font-family: 'Allerta Stencil', sans-serif;
     margin-bottom: 4px;
 }
 
@@ -63,18 +42,35 @@ body {
     color: #000 !important;
 }
 
-.all-show{
-
-    z-index: 10;
+/* FOOTER */
+.img-footer {
+    width: 3vw;
+    height: auto;
 }
 
-.nav-item-right{
-    float: right;
+#page-container {
+    position: relative;
+    min-height: 100vh;
 }
 
-/*
-SEARCH
- */
+#content-wrap {
+    padding-bottom: 6rem;    /* Footer height */
+}
+
+#footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+/* margins koli footer */
+.content-margin-bottom { margin-bottom: 1vh; }
+
+.content-margin-bottom-recipes { margin-bottom: 8vh; }
+
+.content-margin-bottom-create { margin-bottom: 20vh; }
+
+/* SEARCH */
 .search{
     position: relative;
     box-shadow: 0 0 40px rgba(51, 51, 51, .1);
@@ -84,8 +80,8 @@ SEARCH
     height: 60px;
     text-indent: 25px;
     border: 2px solid black;
+    font-family: 'Libre Baskerville', serif;
 }
-
 
 .search input:focus{
     box-shadow: none;
@@ -104,109 +100,8 @@ SEARCH
     right: 5px;
     height: 50px;
     width: 110px;
-    background: #ffdead;
-}
-
-/*
-RECIPES
- */
-
-*:hover{
-    -webkit-transition: all 0.5s ease;
-    transition: all 0.5s ease;
-}
-section{
-    float:left;
-    width:100%;
-    background: #fff;
-    padding:30px 0;
-}
-/*h1{float:left; width:100%; color:#232323; margin-bottom:30px; font-size: 20px;}*/
-h1 h5 span{font-family: 'Libre Baskerville', serif; display:block; font-size:80px; text-transform:none; margin-bottom:20px; margin-top:30px; font-weight:700}
-h1 a{color:#131313; font-weight:bold;}
-
-
-.nadpiskarta {
-    font-size: 25px ;
-    text-align: center;
-    margin-top: 0px;
-}
-
-.profile-card-5{
-    margin-top:20px;
-
-}
-.profile-card-5 .btn{
-    border-radius:5px; /* zmen aby si mala okruhle okraje */
-    text-transform:uppercase;
-    font-size:12px;
-    padding:7px 15px;
-}
-.profile-card-5 .card-img-block {
-    width: 91%;
-    margin: 0 auto;
-    position: relative;
-    top: -20px;
-}
-
-.okraje-recepty {
-
-}
-
-.profile-card-5 .card-img-block img:hover{
-    border-radius:5px;
-    box-shadow:0 0 10px rgba(0,0,0,0.63);
-}
-.profile-card-5 h5{
-    color:#4E5E30;
-    font-weight:600;
-}
-.profile-card-5 p{
-    font-size:16px;
-    font-weight:300;
-}
-
-
-
-
-.profile-card-5 .btn-primary{
-    background-color:#4E5E30;
-    border-color:#4E5E30;
-}
-
-/*my rules*/
-
-.family-color {
-    background-color: #ffdead;
-}
-
-
-.navbar-bg {
-    color: #ffdead;
-    font-family: 'Allerta Stencil', sans-serif;
-}
-
-h5 {
-    font-size: 18px;
-}
-
-
-.a-login {
-    color: white;
-
-}
-
-.a-login:hover {
-    color:#ffdead;
-}
-
-.a-content:hover {
-    color: #4E5E30;
-}
-
-.navbar-bg{
-    background-color: #ffdead;
-    color: #000;
+    /*background: #ffdead;*/
+    font-family: 'Libre Baskerville', serif;
 }
 
 .search-bar {
@@ -214,42 +109,99 @@ h5 {
     padding-top: 1vh;
 }
 
-.img-logo {
-    width: 2vw;
-    height: auto;
+/* RECIPES CARDS*/
+*:hover{
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
 }
 
-.img-footer {
-    width: 3vw;
-    height: auto;
+section{
+    float:left;
+    width:100%;
+    background: #fff;
+    padding:30px 0;
 }
 
-.button-bot {
-    background-color: white;
+h1 h5 span {
+    font-family: 'Libre Baskerville', serif;
+    display:block; font-size:80px;
+    text-transform:none;
+    margin-bottom:20px;
+    margin-top:30px;
+    font-weight:700
 }
 
+h1 a {
+    color:#131313;
+    font-weight:bold;
+}
+
+.title-card {
+    font-size: 22px ;
+    text-align: center;
+    margin-top: 0px;
+    font-family: 'Libre Baskerville', serif;
+}
+
+.profile-card-5{ margin-top:20px; }
+
+.profile-card-5 .btn{
+    border-radius:5px; /* zmen aby si mala okruhle okraje */
+    font-size:12px;
+    padding:7px 15px;
+}
+
+.profile-card-5 .card-img-block {
+    width: 91%;
+    margin: 0 auto;
+    position: relative;
+    top: -20px;
+}
+
+.profile-card-5 .card-img-block img:hover{
+    border-radius:5px;
+    box-shadow:0 0 10px rgba(0,0,0,0.63);
+}
+
+.profile-card-5 h5{
+    color:#4E5E30;
+    font-weight:600;
+}
+
+.profile-card-5 p{
+    font-size:16px;
+    font-weight:300;
+}
+
+.profile-card-5 .btn-primary{
+    background-color:#4E5E30;
+    border-color:#4E5E30;
+}
+
+h5 { font-size: 18px; }
+
+.a-content:hover { color: #4E5E30; }
+
+/* BUTTONS */
 .my-button {
     padding: 10px;
     margin: 10px;
+    font-family: 'Libre Baskerville', serif;
 }
 
-
-.my-button-create {
+/* Create new recept button */
+.create-margin {
     padding-top: 10px;
     margin-top: 10px;
 }
 
-.moje-zarovnanie {
-    text-align: center;
-}
-
-.my-color {
+/* color */
+.my-button-color-1 {
     background-color: #ffc266;
     color: black;
-    border: black solid 3px;
 }
 
-.my-button-color {
+.my-button-color-2 {
     background-color: #ffdead;
     color: black;
 }
@@ -259,106 +211,38 @@ h5 {
     color: black;
 }
 
+/* border of button */
+.my-border { border: 1px solid black; }
 
-
-.flex-rule {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-
+.my-border:hover {
+    background-color: #ffebcc;
+    color: black;
 }
 
+/* REGISTRATION */
+#registrationLink { color: black; }
 
-.flex-rule-2 {
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-start;
-}
+#registrationLink:hover { color: #595959; }
 
+.registration-bottom { padding-bottom: 12vh; }
 
+/* FORMS */
+.space-forms { margin-top: 1rem; }
 
-
-.commeten-area {
-    margin-top: 10px;
-}
-
-.title-recipe {
-    background: pink;
-    /* vnutro */
-    padding: 1vh 2vw 1vw;
-    /*vonkajsok*/
-    margin: 0vh 5vw 3vh;
-}
-
-.flex-rule-child {
-     padding-left: 2vh;
-     padding-right: 2vh;
-     padding-bottom: 1vh;
-     margin-bottom: 3vh;
-     margin-right:1vw;
-     margin-left:2vw;
- }
-
-.flex-rule-child1 {
-    background-color: #E2F0CB;
-    width: 20vw;
-}
-
-.flex-rule-child2 {
-    background-color: #B5EAD7;
-    width: 35vw;
-}
-
-
-.flex-rule-child3 {
-    width: 20vw;
-}
-
-.flex-rule-child4 {
-    width: 50vw;
-}
-
-.odsadenie {
-    margin-top: 2vh;
-    margin-bottom: 3vh !important;
-}
+.align-forms { text-align: center; }
 
 .form-field {
     width: 45vw !important;
     alignment: center;
     margin-bottom: 2vh;
+    border-radius: 3px;
 }
 
-.select-form-height {
-    height: 35px !important;
-}
+.select-form-height { height: 35px !important; }
 
-.picture-image {
-    height: auto;
-    width: 25vw;
-}
+.background-color-form { background-color:  #ffccd4; }
 
-
-
-.background-color-form {
-    background-color:  #ffccd4;
-}
-
-.footer-fixed {
-    position: fixed;
-    bottom: 0px;
-}
-
-.navbar-fixed {
-    position: fixed;
-    top: 0px;
-    z-index: 1000;
-    width: 100%;
-}
-
-
-/* contant view */
-
+/* ABOUT */
 .bg-1 {
     background-color: #B5EAD7;
     color: #000000;
@@ -372,10 +256,6 @@ h5 {
     background-color: #E2F0CB;
     color: black;
 }
-.bg-4 {
-    background-color: #2f2f2f;
-    color: #fff;
-}
 
 .container-fluid-contact {
     padding-top: 70px;
@@ -388,9 +268,8 @@ h5 {
     padding-bottom: 30px;
 }
 
-.img-style {
-    border: 2px solid black;
-}
+.img-style { border: 2px solid black; }
+
 
 .content {
     float: left;
@@ -402,6 +281,174 @@ h5 {
     height: 45vh;
 }
 
+.contact {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 20px;
+    line-height: 1.8;
+    color: #f5f6f7;
+    margin-right: 3vw;
+    margin-left: 3vw;
+    margin-bottom: 20vh;
+}
+
+.p-contact { font-size: 16px; }
+
+.margin-contact {
+    margin-bottom: 45px;
+    margin-top: 0px;
+}
+
+/* CONTENT & COMMENT */
+
+/* content */
+#chyba { margin-right: 20px; }
+
+#errorRecipe {
+    display: flex;
+    justify-content: center;
+}
+
+.title-recipe {
+    background: pink;
+    /* vnutro */
+    padding: 1vh 2vw 1vw;
+    /*vonkajsok*/
+    margin: 0vh 5vw 3vh;
+}
+
+.flex-rule {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-rule-child {
+    padding-left: 2vh;
+    padding-right: 2vh;
+    padding-bottom: 1vh;
+    margin-bottom: 3vh;
+    margin-right:1vw;
+    margin-left:2vw;
+}
+
+.flex-rule-child1 {
+    background-color: #E2F0CB;
+    width: 20vw;
+}
+
+.flex-rule-child2 {
+    background-color: #B5EAD7;
+    width: 35vw;
+}
+
+.my-margin {
+    margin-top: 2vh;
+    margin-bottom: 3vh !important;
+}
+
+.image-recipe {
+    height: auto;
+    width: 25vw;
+}
+
+/* comment */
+.flex-rule-child3 { width: 70vw; }
+
+.flex-rule-child4 { width: 45vw; }
+
+.comments-section {
+    margin-bottom: 20vh;
+    padding-bottom: 1vh;
+    background-color: #ffccd4;
+}
+
+.comment-div {
+    margin-bottom: 1vh;
+    margin-top: 1vh;
+    margin-right: 3vw;
+    margin-left: 3vw;
+}
+
+.commeten-area { margin-top: 10px; }
+
+/* RESPONZIVITA */
+
+/* formular */
+@media only screen and (max-width: 1000px) {
+    .form-field {
+        width: 70vw !important;
+        alignment: center;
+        margin-bottom: 2vh;
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    .form-field {
+        width: 90vw !important;
+        alignment: center;
+        margin-bottom: 2vh;
+    }
+}
+
+
+/* recept */
+@media only screen and (max-width: 800px) {
+
+    .flex-rule {
+        display: block;
+        alignment: center;
+        text-align: center;
+    }
+
+    .title-recipe {
+        background: pink;
+        padding: 1vh 2vw 1vw;
+        margin: 0vh 2vw 3vh;
+    }
+
+    .flex-rule-child {
+        padding-left: 2vh;
+        padding-right: 2vh;
+        padding-bottom: 1vh;
+        margin-bottom: 3vh;
+        margin-right: 1vw;
+        margin-left: 1vw;
+        align-content: center;
+    }
+
+    .flex-rule-child1 {
+        background-color: #E2F0CB;
+        width: 90vw;
+    }
+
+    ul {
+        text-align:  left;
+    }
+
+    .flex-rule-child2 {
+        background-color: #B5EAD7;
+        width: 90vw;
+    }
+
+    .image-recipe {
+        width: 90vw;
+        height: auto;
+    }
+
+    .flex-rule-child4 {
+        width: 65vw;
+    }
+
+}
+
+@media only screen and (min-width: 1100px) {
+    .flex-rule-child4 {
+        width: 40vw;
+    }
+}
+
+
+/* about */
 @media only screen and (max-width: 700px) {
 
     .content {
@@ -428,195 +475,7 @@ h5 {
     }
 }
 
-@import url('https://fonts.googleapis.com/css?family=Libre+Baskerville:400,700');
-
-.contact {
-    font-family: 'Libre Baskerville', serif;
-    font-size: 20px;
-    line-height: 1.8;
-    color: #f5f6f7;
-    margin-right: 3vw;
-    margin-left: 3vw;
-    margin-bottom: 20vh;
-}
-.p-contact {font-size: 16px;}
-.margin-contact {
-    margin-bottom: 45px;
-    margin-top: 0px;
-}
-
-.content-margin-bottom {
-    margin-bottom: 1vh;
-}
-
-.content-margin-bottom-recipes {
-    margin-bottom: 8vh;
-}
-
-.content-margin-bottom-create {
-    margin-bottom: 20vh;
-}
-/*
-footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-}
-*/
-
-
-/* formular */
-@media only screen and (max-width: 1000px) {
-    .form-field {
-        width: 70vw !important;
-        alignment: center;
-        margin-bottom: 2vh;
-    }
-}
-
-
-@media only screen and (max-width: 800px) {
-    .form-field {
-        width: 90vw !important;
-        alignment: center;
-        margin-bottom: 2vh;
-    }
-}
-
-/* recept */
-@media only screen and (max-width: 800px) {
-
-    .flex-rule {
-        display: block;
-        alignment: center;
-
-        text-align: center;
-
-    }
-
-    .title-recipe {
-        background: pink;
-        padding: 1vh 2vw 1vw;
-        margin: 0vh 2vw 3vh;
-    }
-
-    .flex-rule-child {
-        padding-left: 2vh;
-        padding-right: 2vh;
-        padding-bottom: 1vh;
-        margin-bottom: 3vh;
-        margin-right: 1vw;
-        margin-left: 1vw;
-        align-content: center;
-    }
-
-    .flex-rule-child1 {
-        background-color: #E2F0CB;
-        width: 90vw;
-
-    }
-
-    ul {
-        text-align:  left;
-    }
-
-    .flex-rule-child2 {
-        background-color: #B5EAD7;
-        width: 90vw;
-    }
-
-    .picture-image {
-        width: 90vw;
-        height: auto;
-    }
-}
-
-@media only screen and (max-width: 992px) {
-    .form-field {
-        width: 90vw !important;
-        alignment: center;
-        margin-bottom: 2vh;
-    }
-}
-
-/*footer*/
-#page-container {
-    position: relative;
-    min-height: 100vh;
-}
-
-#content-wrap {
-    padding-bottom: 6rem;    /* Footer height */
-}
-
-#footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
- /*   height: 2.5rem;       */     /* Footer height */
-}
-
-.border-salala {
-    border: 1px solid black;
-}
-
-.a-login-two {
-    color: black;
-}
-
-.a-login-two:hover {
-    color: #595959;
-}
-
-
-.border-salala:hover {
-    background-color: #ffebcc;
-    color: black;
-}
-
-.odsatenie-dole-registracia {
-    padding-bottom: 12vh;
-}
-
-.delete-edit-icon {
-    width: 15px;
-    height: 15px;
-}
-
-.img-recipes {
-    max-width: 100%;
-    max-height:  80%;
-}
-
-.comments-section {
-
-    margin-bottom: 20vh;
-    padding-bottom: 1vh;
-    background-color: #ffccd4;
-}
-
-.comment-dov {
-    margin-bottom: 1vh;
-    margin-top: 1vh;
-    margin-right: 3vw;
-    margin-left: 3vw;
-}
-
-.form-popup {
-    display: none;
-    position: fixed;
-    top: 15vh;
-    left:40vw;
-    border: 3px solid black;
-    z-index: 9;
-}
-
-.form-container {
-    max-width: 300px;
-    padding: 10px;
-    background-color: pink;
-}
-
+/*ESTE PRACOVNE*/
 #addTypeForm {
     display: none;
 }

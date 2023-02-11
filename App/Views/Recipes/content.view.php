@@ -2,13 +2,16 @@
 /** @var \App\Core\IAuthenticator $auth */
 ?>
 
-<div class="content-margin-bottom">
+<div class="content-margin-bottom family-font">
     <?php if (isset($_GET['e'])) { ?>
-        <h1>Chyba recept :)</h1>
+            <div class="container-2 flex-rule-child" id="errorRecipe">
+                <h1 id="chyba" >Page not fount</h1>
+                <img src="public/images/sad-cloud.png">
+            </div>
    <?php } else { ?>
 <div class="wrapper wrapper-me">
      <div class = "title-recipe">
-         <h1 class = "moje-zarovnanie">
+         <h1 class = "align-forms">
              <?php echo $data['recept']->getTitle() ?></h1>
      </div>
 
@@ -29,13 +32,21 @@
 
         <div class = "flex-rule-child flex-rule-child2">
             <h3>Postup</h3>
-            <p>
-                <?php echo $data['recept']->getProcess() ?>
-            </p>
+            <ol>
+                <?php
+                $process = $data['recept']->getProcess();
+                $pro_arr = preg_split('/[0-9]+\./', $process);
+                array_shift($pro_arr);
+
+                foreach ($pro_arr as $value) {
+                    echo "<li> $value </li>";
+                } ?>
+            </ol>
+
         </div>
 
         <div>
-            <img class="flex-rule-child picture-image" src="public/images/<?php echo $data['recept']->getImage() ?>" alt="Image of cake">
+            <img class="flex-rule-child image-recipe" src="public/images/<?php echo $data['recept']->getImage() ?>" alt="Image of cake">
         </div>
 
     </div>
@@ -45,55 +56,68 @@
 
 <!-- comment section -->
 
-<div class="comment-dov">
+<div class="comment-div">
 <section class="comments-section">
-    <div class="container my-5 py-5">
+
+
+
+    <div class="container  my-3  pt-3 pb-5">
         <div class="row d-flex justify-content-center">
             <div class="col-md-12 col-lg-10">
-                <div class="card  text-dark">
 
+                <!-- biela cast s komentarmi-->
+                <div class="card text-dark">
+
+                    <!--hlavicka-->
                     <div class="card-body p-4">
-                        <h4 class="mb-0">Komentáre</h4>
+                        <h4 class="mb-0 family-font">Komentáre</h4>
                     </div>
 
                     <hr class="my-0" />
 
-                    <?php foreach ($data['comments'] as $comment) {
-                    if ($comment->getRecipe() == $data['recept']->getId()) { ?>
-<!--                            toto divko sa maze spolu so vsetkym v nom-->
-                        <div class="card-body p-4" id="com-<?=$comment->getId() ?>" >
+
+                    <!-- content -->
+                    <?php foreach ($data['comments'] as $comment) { ?>
+                        <div class="card-body p-4">
                             <div class="d-flex flex-start">
                                 <div>
-                                    <!-- autor receptu -->
                                     <h6 class="fw-bold mb-1">
-                                        <i><?php echo $comment->getUserName(); ?></i>
+                                        <i>
+                                            <?= $comment->getUserName() ?>
+                                        </i>
                                     </h6>
 
 
+                                    <?php if ($auth->isLogged() && $comment->getAuthor() == $auth->getLoggedUserId()) { ?>
                                     <div class="flex-rule">
-
-                                        <!-- text komentara-->
-                                        <p class="mb-0 flex-rule-child commeten-area flex-rule-child4">
-                                            <?= $comment->getText() ?>
-                                        </p>
-
-                                        <!--ak je pouzivatel prihlaseny a je autorom komentara, tak sa mu zobrazi tlacidlo na zmazanie a upravu komentara-->
-                                        <div class="d-flex align-items-center mb-3  flex-rule-child flex-rule-child3 ">
-                                            <?php if ($auth->isLogged() && $comment->getAuthor() == $auth->getLoggedUserId()) { ?>
-                                                <button class="btn my-button color-create odsadenie" type="submit" onclick="deleteComment(<?=$comment->getId() ?>)">Vymaz</button>
-                                                <button class="btn my-button color-create odsadenie" type="submit" onclick="editC(<?=$comment->getId() ?>)">Uprav</button>
-                                            <?php } ?>
+                                        <p class=" flex-rule-child flex-rule-child4 commeten-area " ><?php echo $comment->getText() ?></p>
+                                        <div class="">
+                                            <button class="btn my-button my-button-color-1  my-margin my-border" type="submit" id="button-addon2">Upraviť</button>
+                                            <button class="btn my-button my-button-color-2 my-margin my-border" type="submit" id="button-addon2">Vymazať</button>
                                         </div>
-
                                     </div>
+                                    <?php } else { ?>
+                                    <p class="mb-0 flex-rule-child commeten-area flex-rule-child3">
+
+                                        <?= $comment->getText() ?>
+                                    </p>
+                                    <?php } ?>
+
+
+
 
 
                                 </div>
                             </div>
                         </div>
                         <hr class="my-0" />
-                    <?php }} ?>
+                    <?php } ?>
 
+
+
+
+
+                    <!-- jedina dobra secion z komentarov-->
 
                     <!-- Ak je pouzivatel prihlaseny, tak sa mu zobrazi formular na pridanie komentara -->
                     <?php if ($auth->isLogged()) { ?>
@@ -111,7 +135,7 @@
                                         <input type="hidden" name="comment-id">
                                         <div class="flex-rule">
                                             <textarea class="form-control flex-rule-child commeten-area" rows="1" cols="85" placeholder="Pridaj komentar..." id="comment" name="text" ></textarea>
-                                            <button class="btn my-button color-create odsadenie flex-rule-child" type="submit" id="button-addon2">Pridaj</button>
+                                            <button class="btn my-button color-create my-margin flex-rule-child my-border" type="submit" id="button-addon2">Pridať</button>
                                         </div>
                                     </form>
                                 </div>
@@ -121,9 +145,15 @@
                     <?php } ?>
 
                 </div>
+                <!--koniec tela komentarov-->
+
+
             </div>
          </div>
     </div>
-</section>
+
+
+
+</section> <!--koniec sekcie komentarov-->
     <?php } ?>
 </div>

@@ -113,7 +113,7 @@ class RecipesController extends AControllerBase
      * @throws \Exception
      * ulozenie receptu
      */
-    public function store() {
+    public function store(): Response {
 
         $idRecipe = $this->request()->getValue('id');
         $recipe = ($idRecipe ? Recipe::getOne($idRecipe) : new Recipe()); //kontrolujem ci pridavam recept alebo upravujem stary....
@@ -143,10 +143,8 @@ class RecipesController extends AControllerBase
             $image = $_FILES['image']['tmp_name'];
             move_uploaded_file($image, "public/images/{$_FILES['image']['name']}");
 
-            if ($this->request()->getValue('image') == null) {
-                if (!$idRecipe) {
+            if ($image == null) {
                     $recipe->setImage("universal.jpg");
-                }
             } else {
                 $recipe->setImage($_FILES['image']['name']);
             }

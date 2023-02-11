@@ -11,18 +11,9 @@ use App\Models\Type;
 class TypesController extends AControllerBase
 {
     public function index() : Response {
-        // TODO sem si chcela dat to pocitanie receptov....ale ma to byt ozaj tu?
         $types = Type::getAll();
-
-        $numbersOfRecipes = array();
-        $poc = 0;
-        foreach ($types as $type) {
-            $recipes = Recipe::getAll("category = ?", [$type->getId()]);
-            $count = sizeof($recipes);
-        }
         $data = ['types'=>$types];
 
-//        $types = Type::getAll();
         return $this->html($data);
     }
 

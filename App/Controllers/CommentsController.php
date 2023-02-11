@@ -33,8 +33,8 @@ class CommentsController extends AControllerBase
 
 
     public function edit() {
-        $id = $this->request()->getValue('id');
-        $commentToEdit = Comment::getOne($id);
+        $idComment = $this->request()->getValue('id');
+        $commentToEdit = Comment::getOne($idComment);
 
 
         return $this->html($commentToEdit, viewName: 'content');
