@@ -145,10 +145,12 @@ class RecipesController extends AControllerBase
             $image = $_FILES['image']['tmp_name'];
             move_uploaded_file($image, "public/images/{$_FILES['image']['name']}");
 
-            if ($image == null) {
+            if ($image == null && $idRecipe == null) {
                     $recipe->setImage("universal.jpg");
             } else {
-                $recipe->setImage($_FILES['image']['name']);
+                if ($idRecipe == null) {
+                    $recipe->setImage($_FILES['image']['name']);
+                }
             }
 
             $recipe->save();
