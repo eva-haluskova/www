@@ -39,12 +39,14 @@
             <ol>
                 <?php
                 $process = $data['recept']->getProcess();
-                $pro_arr = preg_split('/[0-9]+\./', $process);
-                array_shift($pro_arr);
-
+                if (substr($process,0,1) == '1') {
+                    $pro_arr = preg_split('/[0-9]+\./', $process);
+                    array_shift($pro_arr);
                 foreach ($pro_arr as $value) {
                     echo "<li> $value </li>";
-                } ?>
+                }} else {
+                    echo $data['recept']->getProcess();
+                }?>
             </ol>
 
         </div>
@@ -60,8 +62,6 @@
 
 
 <!-- KOMENTARE -->
-<!-- TODO osetrenie vsupov klient + server -->
-<!-- TODO mazanie komentaroc ajax -->
 
 <div class="comment-div">
 <section class="comments-section">
@@ -92,13 +92,23 @@
                                 </i>
                             </h6>
 
-
+                            <!-- ak je autorom komntaru prihlaseny pouzivatel, zobrazi za mu aj moznost vymazania alebo editovanie-->
                             <?php if ($auth->isLogged() && $comment->getAuthor() == $auth->getLoggedUserId()) { ?>
-                                <div id="commentEdit-<?=$comment->getId() ?>" class="flex-rule">
+                                    <!-- normal comment area -->
+                                <div id="commentArea-<?=$comment->getId() ?>" class="flex-rule">
                                     <p class=" flex-rule-child flex-rule-child4 commeten-area " ><?php echo $comment->getText() ?></p>
-                                        <button class="btn my-button my-button-color-1  my-margin my-border" type="submit" onclick="editComment(<?=$comment->getId() ?>)">Upraviť</button>
+                                        <button class="btn my-button my-button-color-1  my-margin my-border" type="submit" onclick="showEditWindow(<?=$comment->getId() ?>)">Upraviť</button>
                                         <button class="btn my-button my-button-color-2 my-margin my-border" type="submit" onclick="deleteComment(<?=$comment->getId() ?>)">Vymazať</button>
 
+                                </div>
+                                    <!-- edit comment area, defaultne skryta -->
+                                <div class="hide-div" id="commentEditArea-<?=$comment->getId() ?>">
+                                    <form  method="post" name="myForm" action="?c=comments&a=storeEdit&id=<?=$comment->getId() ?>&idRecipe=<?=$data['recept']->getId()?>">
+                                        <div class="flex-rule">
+                                            <textarea id="placeToEdit-<?=$comment->getId() ?>" class="form-control flex-rule-child commeten-area" rows="1" cols="85" maxlength="1000" name="text"></textarea>
+                                            <button class="btn my-button color-create my-margin flex-rule-child my-border" type="submit" onclick="storeEditComment(<?=$comment->getId() ?>)">Edituj</button>
+                                        </div>
+                                   </form>
                                 </div>
 
                             <?php } else { ?>
@@ -108,16 +118,15 @@
                                 </p>
                             <?php } ?>
 
-
                         </div>
                     </div>
+                        <hr/>
                 </div>
-                <hr/>
                 <?php } ?>
 
                 <!-- Ak je pouzivatel prihlaseny, tak sa mu zobrazi formular na pridanie komentara -->
                 <?php if ($auth->isLogged()) { ?>
-                    <div class="card-body p-4">
+                    <div class="card-body p-4" id="addComment">
                         <div class="d-flex flex-start">
                             <div>
                                 <h6 class="fw-bold mb-1">
@@ -127,17 +136,14 @@
                                 </h6>
 
                                 <form  method="post" name="myForm" action="?c=comments&a=store&id=<?=$data['recept']->getId() ?>">
-<!--                                        TODO osetrit ak nebudu data receptu aby sa nezobrazil hidden-->
-                                    <input type="hidden" name="comment-id">
                                     <div class="flex-rule">
-                                        <textarea class="form-control flex-rule-child commeten-area" rows="1" cols="85" placeholder="Pridaj komentar..." id="comment" name="text" ></textarea>
+                                        <textarea class="form-control flex-rule-child commeten-area" rows="1" cols="85" maxlength="1000" placeholder="Pridaj komentar..." id="comment" name="text" ></textarea>
                                         <button class="btn my-button color-create my-margin flex-rule-child my-border" type="submit" id="button-addon2">Pridať</button>
                                     </div>
                                 </form>
                             </div>
                         </div>
                     </div>
-
                 <?php } ?>
 
             </div>
@@ -145,7 +151,6 @@
             </div>
          </div>
     </div>
-
 
 
 </section> <!--koniec sekcie komentarov-->

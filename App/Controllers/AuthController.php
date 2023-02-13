@@ -83,10 +83,18 @@ class AuthController extends AControllerBase
             $data = ['message' => 'Príliš krátky login!', 'login' => $login, 'email' => $email];
             return $this->html($data, viewName: 'registration');
         }
+        if (strlen($login) > 30) {
+            $data = ['message' => 'Príliš dlhy login!', 'login' => $login, 'email' => $email];
+            return $this->html($data, viewName: 'registration');
+        }
 
         // kontrola mailu
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $data = ['message' => 'Zadal si neplatný email', 'login' => $login, 'email' => $email];
+            return $this->html($data, viewName: 'registration');
+        }
+        if (strlen($email) > 40) {
+            $data = ['message' => 'Prilis dlhy mail!', 'login' => $login, 'email' => $email];
             return $this->html($data, viewName: 'registration');
         }
 
@@ -132,6 +140,27 @@ class AuthController extends AControllerBase
         $user->save();
 
         return $this->redirect('?c=auth&a=login');
+    }
+
+    /**
+     * vola sa pri vytvorani loginu - kontorla, ci uz pouzivatel s danym loginom neexituje
+     */
+    function checkLogin() {
+
+        $str = $this->request()->getValue("str");
+        $message = "";
+
+        $len = strlen($str);
+        if ($len > 3) {
+            $users = User::getAll();
+            foreach ($users as $user) {
+                if ($user->getLogin() == $str) {
+                    $message = "Používateľ s takýmto loginom uz existuje!";
+                    return $this->json(['message' => $message]);
+                }
+            }
+        }
+        return $this->json(['message' => $message]);
     }
 
 }

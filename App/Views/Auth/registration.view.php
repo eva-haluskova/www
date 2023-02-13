@@ -16,8 +16,9 @@
                     <form class="form-signin" method="post" action="?c=auth&a=store">
 
                         <h5 class="mb-0">Prihlasovacie meno:</h5>
+                        <p><span id="txtLogin"></span></p>
                         <div class="form-label-group mb-3 space-forms ">
-                            <input name="login" type="text" id="login" class="form-control" placeholder="Login" required autofocus
+                            <input name="login" type="text" id="login" class="form-control" placeholder="Login" onKeyUp="checkLogin(this.value)" required autofocus
                                    minlength="4" maxlength="30" value ="<?php if ($data != null) { echo $data['login']; }?>">
                         </div>
 
@@ -40,7 +41,7 @@
                         </div>
 
                         <div class="text-center">
-                            <button class="btn my-button-color-1 my-button my-border" type="submit" name="submit">Zaregistrovať sa
+                            <button class="btn color-create my-button my-border" type="submit" name="submit">Zaregistrovať sa
                             </button>
                         </div>
 

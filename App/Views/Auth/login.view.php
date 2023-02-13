@@ -25,7 +25,7 @@
                                    placeholder="Password" required>
                         </div>
                         <div class="text-center">
-                            <button class="btn my-button-color-1 my-button my-border" type="submit" name="submit">Prihlásiť
+                            <button class="btn color-create my-button my-border" type="submit" name="submit">Prihlásiť
                             </button>
                         </div>
                         <div class="text-center mt-3">

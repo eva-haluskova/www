@@ -16,7 +16,12 @@ class RecipesController extends AControllerBase
      */
     public function index(): Response {
         $idType = $this->request()->getValue('id');
-        $recipes = Recipe::getAll("category = ?", [$idType]);
+
+        if ($idType == null) {
+            $recipes = Recipe::getAll();
+        } else {
+            $recipes = Recipe::getAll("category = ?", [$idType]);
+        }
 
         return $this->html($recipes);
     }
@@ -150,7 +155,22 @@ class RecipesController extends AControllerBase
             return $this->redirect("?c=home");
         } else {
             $types = Type::getAll();
-            $data = ['message' => 'Zadal si prilis malo znakov!','categiries' => $types, 'recept' => null];
+            $message = 'error';
+            if (strlen($title) < 3) {
+                $message = 'Nazov je príliš krátky!';
+            } else if (strlen($title) > 65) {
+                $message = 'Nazov je príliš dlhy!';
+            } else if (strlen($ingredient) < 5) {
+                $message = 'Ingredienci je prilis malo!';
+            } else if (strlen($ingredient) > 500) {
+                $message = 'Ingredienci je prilis vela!';
+            } else if (strlen($process) < 5) {
+                $message = 'Postup je prikratky!';
+            } else if (strlen($process) > 2000) {
+                $message = 'Postup je prilis dlhy!';
+            }
+
+            $data = ['message' => $message,'categiries' => $types, 'recept' => null, 'title' => $title, 'ingredient'=>$ingredient, 'process'=>$process];
             return $this->html($data, viewName: 'create.form');
 
         }

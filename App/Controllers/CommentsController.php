@@ -6,10 +6,10 @@ use App\Core\AControllerBase;
 use App\Core\Responses\Response;
 use App\Models\Comment;
 use App\Models\Recipe;
-use App\Models\Type;
 
 class CommentsController extends AControllerBase
 {
+
     public function index() : Response {
         $comments = Comment::getAll();
         return $this->html($comments);
@@ -24,31 +24,25 @@ class CommentsController extends AControllerBase
 
         if ($commentToDelete) {
             $commentToDelete->delete();
+            return $this->json(['comment' => $idComment]);
         } else {
             return $this->json(['e' => "error"]);
         }
-
-        return $this->json(['comment' => $idComment]);
     }
 
 
     /**
-     * editovanie komentarov
+     * editovanie komentarov cez volanie
      */
     public function edit() {
         $idComment = $this->request()->getValue('id');
         $commentToEdit = Comment::getOne($idComment);
 
-        return $this->json(['comment' => $idComment]);
-//        return $this->html($commentToEdit, viewName: 'content');
-
-
-       // $this->redirect("?c=recipes&a=display&id=$idRecipe");
-
-//        $categories = Type::getAll();
-//        $data = ['categiries' => $categories, 'recept' => $recipeToEdit];
-//
-//        return $this->html($data, viewName: 'create.form');
+        if ($commentToEdit) {
+            return $this->json(['comment' => $commentToEdit]);
+        } else {
+            return $this->json(['e' => "error"]);
+        }
     }
 
 
@@ -58,17 +52,24 @@ class CommentsController extends AControllerBase
     public function store() {
 
         $idRecipe = $this->request()->getValue('id');
-        $idComment = $this->request()->getValue('idComment');
 
         // aby sa neulozil prazdny komentar
         if ($this->request()->getValue('text') == "") {
             return $this->redirect("?c=recipes&a=display&id=$idRecipe");
         }
 
-        $comment = ($idComment ? Comment::getOne($idComment) : new Comment());
+        $comment = new Comment();
 
+        if(!$comment) {
+            return $this->redirect("?c=recipes&a=display&id=$idRecipe");
+        }
 
-        $comment->setText($this->request()->getValue('text'));
+        $text = $this->request()->getValue('text');
+        if (strlen($text) > 1000) {
+            return $this->redirect("?c=recipes&a=display&id=$idRecipe");
+        }
+
+        $comment->setText($text);
         $comment->setAuthor($this->app->getAuth()->getLoggedUserId());
         $comment->setRecipe($idRecipe);
         $comment->save();
@@ -77,5 +78,37 @@ class CommentsController extends AControllerBase
     }
 
 
+    /**
+     * ukladanie editovaneho commentu
+     */
+    public function storeEdit() {
+        $idRecipe = $this->request()->getValue('idRecipe');
+        $idComment = $this->request()->getValue('id');
+
+        // aby sa neulozil prazdny komentar
+        if ($this->request()->getValue('text') == "") {
+            return $this->redirect("?c=recipes&a=display&id=$idRecipe");
+        }
+
+        if(!$idComment) {
+            return $this->redirect("?c=recipes&a=display&id=$idRecipe");
+        }
+        $comment = Comment::getOne($idComment);
+
+        if(!$comment) {
+            return $this->redirect("?c=recipes&a=display&id=$idRecipe");
+        }
+
+        $text = $this->request()->getValue('text');
+        if (strlen($text) > 1000) {
+            return $this->redirect("?c=recipes&a=display&id=$idRecipe");
+        }
+
+        $comment->setText($text);
+        $comment->save();
+
+        return $this->redirect("?c=recipes&a=display&id=$idRecipe");
+
+    }
 
 }

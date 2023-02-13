@@ -35,7 +35,7 @@
         <div class="input-group space-forms ">
 
             <input type="text" class="form-control" required minlength="3" maxlength="65" id = "title" placeholder="vlož názov receptu" name="title"
-                   value="<?php if($data['recept'] != null) { echo $data['recept']->getTitle(); } ?>" >
+                   value="<?php if($data['recept'] != null) { echo $data['recept']->getTitle(); } else if (isset($data['title'])) { echo $data['title'];}?>" >
         </div>
     </div>
     <div class="mb-3">
@@ -43,14 +43,14 @@
         <label class="col-form-label">Ingrediencie:</label>
         <div class="input-group space-forms ">
             <input type="text" class="form-control" required minlength="5" maxlength="500" id = "ingredient" placeholder="vlož ingrediencie oddelené čiarkov" name="ingredient"
-                   value="<?php if($data['recept'] != null) { echo $data['recept']->getIngredient(); } ?>" >
+                   value="<?php if($data['recept'] != null) { echo $data['recept']->getIngredient(); } else if (isset($data['ingredient'])) { echo $data['ingredient'];}?>" >
         </div>
     </div>
     <div class="mb-3">
         <label for="comment" class="col-form-label">Postup:</label>
         <div class="input-group space-forms ">
             <textarea class="form-control"  rows="5" required minlength="5" maxlength="2000" placeholder="vlož očíslovaný postup" id="comment"
-                      name="process" ><?php if($data['recept'] != null) { echo $data['recept']->getProcess(); } ?></textarea>
+                      name="process" ><?php if($data['recept'] != null) { echo $data['recept']->getProcess(); } else if (isset($data['process'])) { echo $data['process'];}?></textarea>
         </div>
     </div>
 

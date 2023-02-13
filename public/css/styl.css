@@ -380,6 +380,10 @@ h5 { font-size: 18px; }
     padding-bottom: 2vh;
 }
 
+.hide-div {
+    display: none;
+}
+
 /* RESPONZIVITA */
 
 /* formular */

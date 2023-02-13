@@ -34,6 +34,7 @@
                 </div>
             </div>
         </div>
+
         </div>
 
 
@@ -43,7 +44,8 @@
         <?php foreach ($data['types'] as $type) { ?>
         <div id="typ-<?=$type->getId() ?>">
             <tr>
-                <td><?php echo $type->getName() ?></td>
+                <td><?php echo $type->getName() ?>
+                </td>
                 <td>
                     <a href="?c=types&a=delete&id=<?= $type->getId() ?>" class="btn my-button my-button-color-2 my-border">Vymazať</a>
                 </td>
@@ -53,6 +55,7 @@
         <?php } ?>
         </tbody>
     </table>
+
 
     </div>
 </div>
